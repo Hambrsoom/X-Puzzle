@@ -7,4 +7,4 @@ def h0(puzzleArray):
 #manhattan
 def h1(puzzleArray, xDim, yDim):
     index = puzzleArray.indexOf('0')
-    distance = 
+    # distance = 
