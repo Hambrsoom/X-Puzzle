@@ -1,6 +1,5 @@
 from pprint import pprint
 from bisect import insort 
-from heuristics import h0, hammingDistanceHeuristic
 from successor import generateChildStates
 from solution_path import getSolutionPath
 from helper_methods import *
@@ -49,7 +48,7 @@ def astar(puzzleArr, numRows, numColumns):
         #get children, add to open list
         children = generateChildStates(nodeWeAreLookingAt["currentState"], nodeWeAreLookingAt["gn"], puzzleDimensions)
         children = removeStatesWeHaveAlreadyVisitedFromChildren(children, closed)
-        evaluateHeuristicOnChildren(children)
+        evaluateHeuristicOnChildren(children, puzzleDimensions)
         evaluateStarFunctionOnChildren(children)
 
         open.extend(children)

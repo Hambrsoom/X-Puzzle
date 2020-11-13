@@ -1,4 +1,8 @@
-from heuristics import h0, hammingDistanceHeuristic
+from heuristics import h3 as desiredHeuristic
+# h0
+# h1 -> Hamming
+# h2 -> Manhattan
+# h3 -> sumOfPermutationInversions
 
 
 def removeStatesWeHaveAlreadyVisitedFromChildren(children, closed):
@@ -11,9 +15,9 @@ def removeStatesWeHaveAlreadyVisitedFromChildren(children, closed):
 
     return children
 
-def evaluateHeuristicOnChildren(children):
+def evaluateHeuristicOnChildren(children, puzzleDimensions):
     for child in children:
-        child["hn"] = hammingDistanceHeuristic(child['currentState'])
+        child["hn"] = desiredHeuristic(child['currentState'], puzzleDimensions["numColumns"], puzzleDimensions["numRows"])
 
 
 def isGoal(puzzleArr, puzzleDimensions):
