@@ -1,6 +1,9 @@
 from pprint import pprint
 from bisect import insort 
 from heuristics import h0 as desiredHeuristic
+from successor import generateChildStates
+from solution_path import getSolutionPath
+from helper_methods import *
 
 # sampleStateSpace = {
 #     "currentState": [1,2,3,4,5,6,7,0],
@@ -39,11 +42,11 @@ def gbfs(puzzleArr, numRows, numColumns):
         print(nodeWeAreLookingAt['currentState'])
         closed.insert(0, nodeWeAreLookingAt)
 
-        goalFound = isGoal(nodeWeAreLookingAt['currentState'])
+        goalFound = isGoal(nodeWeAreLookingAt['currentState'], puzzleDimensions)
         if goalFound: goalNode = nodeWeAreLookingAt
 
         #get children, add to open list
-        children = generateChildStates(nodeWeAreLookingAt["currentState"], nodeWeAreLookingAt["gn"])
+        children = generateChildStates(nodeWeAreLookingAt["currentState"], nodeWeAreLookingAt["gn"], puzzleDimensions)
         children = removeStatesWeHaveAlreadyVisitedFromChildren(children, closed)
         evaluateHeuristicOnChildren(children)
         open.extend(children)
