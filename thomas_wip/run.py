@@ -1,7 +1,6 @@
 # imports
 from argparse import ArgumentParser
 from importPuzzles import importPuzzlesFromFile
-from heuristics import h0
 from astar import astar
 from gbfs import gbfs
 from uniform_cost import uniform_cost
@@ -23,8 +22,8 @@ if args.filename is not None:
 puzzles = importPuzzlesFromFile(filePath)
 
 if args.algo == 'gbfs':
-    gbfs(puzzles[4], 2, 4)
+    gbfs(puzzles[2], 2, 4)
 if args.algo == 'astar':
-    astar(puzzles[4], 2, 4)
+    astar(puzzles[2], 2, 4)
 if args.algo == 'uc':
-    uniform_cost(puzzles[4], 2, 4)
+    uniform_cost(puzzles[2], 2, 4)

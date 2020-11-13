@@ -1,4 +1,4 @@
-from heuristics import h0, hammingDistanceHeuristic
+from heuristics import hammingDistanceHeuristic, manhattanHeuristic
 
 
 def removeStatesWeHaveAlreadyVisitedFromChildren(children, closed):
@@ -13,7 +13,7 @@ def removeStatesWeHaveAlreadyVisitedFromChildren(children, closed):
 
 def evaluateHeuristicOnChildren(children):
     for child in children:
-        child["hn"] = hammingDistanceHeuristic(child['currentState'])
+        child["hn"] = hammingDistanceHeuristic(child['currentState'], 2 , 4)
 
 
 def isGoal(puzzleArr, puzzleDimensions):
