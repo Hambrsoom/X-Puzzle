@@ -47,7 +47,7 @@ def gbfs(puzzleArr, numRows, numColumns):
         #get children, add to open list
         children = generateChildStates(nodeWeAreLookingAt["currentState"], nodeWeAreLookingAt["gn"], puzzleDimensions)
         children = removeStatesWeHaveAlreadyVisitedFromChildren(children, closed)
-        evaluateHeuristicOnChildren(children)
+        evaluateHeuristicOnChildren(children, puzzleDimensions)
         open.extend(children)
         open = sorted(open, key=lambda k: k['hn'])
     
