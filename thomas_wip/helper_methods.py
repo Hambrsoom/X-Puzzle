@@ -1,4 +1,5 @@
-from heuristics import h0 as desiredHeuristic
+from heuristics import h0, hammingDistanceHeuristic
+
 
 def removeStatesWeHaveAlreadyVisitedFromChildren(children, closed):
     cleanChildren = children.copy()
@@ -12,7 +13,8 @@ def removeStatesWeHaveAlreadyVisitedFromChildren(children, closed):
 
 def evaluateHeuristicOnChildren(children):
     for child in children:
-        child["hn"] = desiredHeuristic(child['currentState'])
+        child["hn"] = hammingDistanceHeuristic(child['currentState'])
+
 
 def isGoal(puzzleArr, puzzleDimensions):
     return increasingHorizontallyWithBottomRightCorner0(puzzleArr) or increasingVerticallyWithBottomRightCorner0(puzzleArr, puzzleDimensions)

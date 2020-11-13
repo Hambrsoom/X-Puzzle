@@ -19,8 +19,10 @@ puzzleDimensions = {
 }
 
 def uniform_cost(puzzleArr, numRows, numColumns):
-    print("Running A* algo on the following puzzle:")
+    print("Running Uniform Cost algo on the following puzzle:")
     print(puzzleArr)
+    print(numRows)
+    print(numColumns)
 
     puzzleDimensions["numRows"] = numRows
     puzzleDimensions["numColumns"] = numColumns
@@ -28,8 +30,7 @@ def uniform_cost(puzzleArr, numRows, numColumns):
     open = [{
         "currentState": puzzleArr.copy(),
         "parent": None,
-        "gn": 0,
-        "hn": 0
+        "gn": 0
     }]
     closed = []
 
@@ -48,10 +49,8 @@ def uniform_cost(puzzleArr, numRows, numColumns):
         #get children, add to open list
         children = generateChildStates(nodeWeAreLookingAt["currentState"], nodeWeAreLookingAt["gn"], puzzleDimensions)
         children = removeStatesWeHaveAlreadyVisitedFromChildren(children, closed)
-        evaluateHeuristicOnChildren(children)
         open.extend(children)
         open = sorted(open, key=lambda k: k['gn'])
-    
 
     # we will add the getSearchPath here (calling method from another file)
     print("========================")
