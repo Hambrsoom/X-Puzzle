@@ -85,3 +85,12 @@ def generateSecondSolutionList(nRows, nColumns):
         tempList = []
         firstValue = firstValue + 1 
     return properList
+
+
+def listToString(state):  
+    str1 = ""  
+    
+    for element in state:  
+        str1 += str(element) + " "
+    
+    return str1 

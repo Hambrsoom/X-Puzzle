@@ -1,6 +1,6 @@
 # imports
 from argparse import ArgumentParser
-from importPuzzles import importPuzzlesFromFile
+from importPuzzles import *
 from astar import astar
 from gbfs import gbfs
 from helper_methods import generateSecondSolutionList
@@ -18,6 +18,9 @@ parser.add_argument("-a", "--algo", dest="algo",
 args = parser.parse_args()
 if args.filename is not None:
     filePath = args.filename
+
+# generate random 50 puzzles of the dimenstion 2*4:
+generateFileOfFiftyPuzzles(2,4, 50)
 
 # import puzzles
 puzzles = importPuzzlesFromFile(filePath)
