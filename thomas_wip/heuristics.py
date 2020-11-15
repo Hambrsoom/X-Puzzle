@@ -5,12 +5,17 @@ import numpy as np
 #Hamming distance
 def h1(puzzleArray, xDim, yDim, firstSolutionList, secondSolutionList):
     elementShouldEqualTo = 1
-    hn = 0
+    hn1 = 0
+    hn2 = 0
     for element in puzzleArray:
         if int(element) != elementShouldEqualTo or (int(element) == int(puzzleArray[-1]) and int(element) != 0):
-            hn = hn + 1
+            hn1 = hn1 + 1
         elementShouldEqualTo = elementShouldEqualTo + 1
-    return hn 
+    
+    for i in range(len(puzzleArray)):
+        if int(puzzleArray[i]) != int(secondSolutionList[i]):
+            hn2 = hn2 + 1 
+    return min(hn1, hn2) 
 
 # Manhattan
 def h2(puzzleArray, nRows, nColumns, firstSolutionList, secondSolutionList):

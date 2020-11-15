@@ -1,4 +1,4 @@
-from heuristics import h2 as desiredHeuristic
+from heuristics import h3 as desiredHeuristic
 # h0
 # h1 -> Hamming
 # h2 -> Manhattan
