@@ -15,6 +15,20 @@ def removeStatesWeHaveAlreadyVisitedFromChildren(children, closed):
 
     return children
 
+def addChildrenToOpenList(children, open):
+    
+    for child in children:
+        for element in open:
+            if child.currentState == element.currentState and child.gn < element.gn:
+                open.remove(element)
+                open.extend(child)
+            else:
+                open.extend(child)
+    
+    return sorted(open, key=lambda k: k['gn'])
+
+
+
 def evaluateHeuristicOnChildren(children, puzzleDimensions, firstSolutionList, secondSolutionList):
     for child in children:
         child["hn"] = desiredHeuristic(child['currentState'], puzzleDimensions["numColumns"], puzzleDimensions["numRows"], firstSolutionList, secondSolutionList)
