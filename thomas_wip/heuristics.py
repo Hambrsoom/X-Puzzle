@@ -13,7 +13,7 @@ def h1(puzzleArray, xDim, yDim):
     return hn 
 
 # Manhattan
-def manhattanHeuristic(puzzleArray, nRows, nColumns):
+def h2(puzzleArray, nRows, nColumns):
     properList = []
     for number in range(len(puzzleArray)):
         properList.append(number+1)
@@ -59,3 +59,4 @@ def h3(puzzleArray, xDim, yDim):
         count = 1;
     arrVertical = np.hstack((0,arrVertical));
     return min(checkGoal1, Permutation(arrVertical).inversions());
+    # return checkGoal1

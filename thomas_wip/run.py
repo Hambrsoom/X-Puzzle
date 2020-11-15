@@ -22,8 +22,8 @@ if args.filename is not None:
 puzzles = importPuzzlesFromFile(filePath)
 
 if args.algo == 'gbfs':
-    gbfs(puzzles[2], 2, 4)
+    gbfs(puzzles[0], 2, 4)
 if args.algo == 'astar':
-    astar(puzzles[2], 2, 4)
+    astar(puzzles[0], 2, 4)
 if args.algo == 'uc':
-    uniform_cost(puzzles[2], 2, 4)
+    uniform_cost(puzzles[1], 2, 4)

@@ -41,6 +41,7 @@ def gbfs(puzzleArr, numRows, numColumns):
         print(nodeWeAreLookingAt['currentState'])
         closed.insert(0, nodeWeAreLookingAt)
 
+
         goalFound = isGoal(nodeWeAreLookingAt['currentState'], puzzleDimensions)
         if goalFound: goalNode = nodeWeAreLookingAt
 
@@ -54,7 +55,7 @@ def gbfs(puzzleArr, numRows, numColumns):
     print("========================")
     print("Search Path")
     print("========================")
-    pprint(closed)
+    # pprint(closed)
 
     solutionPath = getSolutionPath(goalNode, closed)
 

@@ -1,4 +1,4 @@
-from heuristics import h3 as desiredHeuristic
+from heuristics import h1 as desiredHeuristic
 # h0
 # h1 -> Hamming
 # h2 -> Manhattan
@@ -26,7 +26,7 @@ def isGoal(puzzleArr, puzzleDimensions):
 def increasingHorizontallyWithBottomRightCorner0(puzzleArr):
     arrCopy = puzzleArr.copy()
     lastIsZero = arrCopy.pop() == '0'
-    return lastIsZero and all(int(puzzleArr[i]) <= int(puzzleArr[i+1]) for i in range(len(puzzleArr)-2)) #-2 since pop
+    return lastIsZero and all(int(arrCopy[i]) <= int(arrCopy[i+1]) for i in range(len(arrCopy)-1)) #-1 since pop
 
 def increasingVerticallyWithBottomRightCorner0(puzzleArr, puzzleDimensions):
     arrCopy = puzzleArr.copy()
@@ -34,10 +34,10 @@ def increasingVerticallyWithBottomRightCorner0(puzzleArr, puzzleDimensions):
 
     if lastIsZero == False:
         return False
-
     n = puzzleDimensions["numColumns"]
     m = puzzleDimensions["numRows"]
     for i in range(n): #iterate through columns
+        
         tmp = int(arrCopy[i])
         for j in range(m): #iterate through rows
             if i + j*n >= m*n-1: #-1 to account for popped 0
@@ -50,6 +50,8 @@ def increasingVerticallyWithBottomRightCorner0(puzzleArr, puzzleDimensions):
                     return False
                 else:
                     tmp = tmp2
+        if i != n and (tmp + m) != int(arrCopy[i+1]):
+            return False
 
     return lastIsZero
 

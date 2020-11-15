@@ -20,9 +20,6 @@ puzzleDimensions = {
 
 def uniform_cost(puzzleArr, numRows, numColumns):
     print("Running Uniform Cost algo on the following puzzle:")
-    print(puzzleArr)
-    print(numRows)
-    print(numColumns)
 
     puzzleDimensions["numRows"] = numRows
     puzzleDimensions["numColumns"] = numColumns
@@ -44,6 +41,7 @@ def uniform_cost(puzzleArr, numRows, numColumns):
         closed.insert(0, nodeWeAreLookingAt)
 
         goalFound = isGoal(nodeWeAreLookingAt['currentState'], puzzleDimensions)
+        print("=================>", goalNode)
         if goalFound: goalNode = nodeWeAreLookingAt
 
         #get children, add to open list
