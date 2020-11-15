@@ -21,7 +21,7 @@ puzzleDimensions = {
     "numColumns": 0
 }
 
-def uniform_cost(puzzleArr, numRows, numColumns):
+def uniform_cost(puzzleNumber, puzzleArr, numRows, numColumns):
 
     start_time = time.time()
     time_end = start_time + 60
@@ -65,5 +65,5 @@ def uniform_cost(puzzleArr, numRows, numColumns):
         getSolutionPath(goalNode, closed, "ucs", puzzleNumber, True, "", execution_time)
     else: 
         getSearchPath(closed, "ucs", puzzleNumber, False, "")
-        getSolutionPath(goalNode, closed, "uc", puzzleNumber, False, "")
+        getSolutionPath(goalNode, closed, "ucs", puzzleNumber, False, "", execution_time)
 
