@@ -16,15 +16,14 @@ def removeStatesWeHaveAlreadyVisitedFromChildren(children, closed):
     return children
 
 def addChildrenToOpenList(children, open):
-    
-    for child in children:
-        for element in open:
-            if child.currentState == element.currentState and child.gn < element.gn:
-                open.remove(element)
-                open.extend(child)
-            else:
-                open.extend(child)
-    
+    if len(open) != 0:
+        for child in children:
+            for element in open:
+                if child["currentState"] == element["currentState"] and int(child["gn"]) < int(element["gn"]):
+                    open.remove(element)
+                    open.append(child)
+    else:
+        open.extend(children)
     return sorted(open, key=lambda k: k['gn'])
 
 

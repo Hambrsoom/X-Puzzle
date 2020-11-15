@@ -48,8 +48,8 @@ def uniform_cost(puzzleNumber, puzzleArr, numRows, numColumns):
     
     while not goalFound and time.time() <= time_end:
         nodeWeAreLookingAt = open.pop(0)
-        print(nodeWeAreLookingAt['currentState'])
         closed.insert(0, nodeWeAreLookingAt)
+        print(nodeWeAreLookingAt)
 
         goalFound = isGoal(nodeWeAreLookingAt['currentState'], puzzleDimensions)
         if goalFound: goalNode = nodeWeAreLookingAt

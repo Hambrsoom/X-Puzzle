@@ -7,7 +7,7 @@ def getSolutionPath(goalNode, closedArr, algoType, puzzleNumber, foundSolution, 
     print("========================")
 
     if heuristicFunction == "":
-            fileName = "output/" + str(puzzleNumber) + "_" + algoType + "_solution" +".txt"
+        fileName = "output/" + str(puzzleNumber) + "_" + algoType + "_solution" +".txt"
     else:
         fileName = "output/" + str(puzzleNumber) + "_" + algoType + "-" + heuristicFunction + "_solution" +".txt"
 
