@@ -3,6 +3,8 @@ from bisect import insort
 from successor import generateChildStates
 from solution_path import getSolutionPath
 from helper_methods import *
+from search_path import getSearchPath
+
 
 
 # sampleStateSpace = {
@@ -41,7 +43,6 @@ def uniform_cost(puzzleArr, numRows, numColumns):
         closed.insert(0, nodeWeAreLookingAt)
 
         goalFound = isGoal(nodeWeAreLookingAt['currentState'], puzzleDimensions)
-        print("=================>", goalNode)
         if goalFound: goalNode = nodeWeAreLookingAt
 
         #get children, add to open list
@@ -51,10 +52,7 @@ def uniform_cost(puzzleArr, numRows, numColumns):
         open = sorted(open, key=lambda k: k['gn'])
 
     # we will add the getSearchPath here (calling method from another file)
-    print("========================")
-    print("Search Path")
-    print("========================")
-    pprint(closed)
-    
+
+    getSearchPath(closed, "ucs", 1)
     getSolutionPath(goalNode, closed)
 

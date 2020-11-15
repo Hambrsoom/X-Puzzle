@@ -1,4 +1,4 @@
-from heuristics import h1 as desiredHeuristic
+from heuristics import h2 as desiredHeuristic
 # h0
 # h1 -> Hamming
 # h2 -> Manhattan
@@ -15,9 +15,9 @@ def removeStatesWeHaveAlreadyVisitedFromChildren(children, closed):
 
     return children
 
-def evaluateHeuristicOnChildren(children, puzzleDimensions):
+def evaluateHeuristicOnChildren(children, puzzleDimensions, firstSolutionList, secondSolutionList):
     for child in children:
-        child["hn"] = desiredHeuristic(child['currentState'], puzzleDimensions["numColumns"], puzzleDimensions["numRows"])
+        child["hn"] = desiredHeuristic(child['currentState'], puzzleDimensions["numColumns"], puzzleDimensions["numRows"], firstSolutionList, secondSolutionList)
 
 
 def isGoal(puzzleArr, puzzleDimensions):
@@ -57,3 +57,31 @@ def increasingVerticallyWithBottomRightCorner0(puzzleArr, puzzleDimensions):
 
 def isSameState(dict1, dict2):
     return dict1["currentState"] == dict2["currentState"]
+
+
+def generateFirstSolutionList(puzzleArray):
+    properList = []
+    for number in range(len(puzzleArray)):
+        properList.append(number+1)
+    
+    properList[-1] = 0
+    return properList
+
+def generateSecondSolutionList(nRows, nColumns):
+    properList = []
+    tempList = []
+    firstValue = 1
+
+    for i in range(nRows):
+        for j in range(nColumns):
+            if j == 0:
+                tempList.append(firstValue)
+            elif i == nRows-1 and j == nColumns-1:
+                tempList.append(0)
+            else:
+                tempList.append( tempList[j-1] + nRows )
+                print(tempList)
+        properList = properList + tempList
+        tempList = []
+        firstValue = firstValue + 1 
+    return properList

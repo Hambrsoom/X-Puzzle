@@ -3,6 +3,7 @@ from argparse import ArgumentParser
 from importPuzzles import importPuzzlesFromFile
 from astar import astar
 from gbfs import gbfs
+from helper_methods import generateSecondSolutionList
 from uniform_cost import uniform_cost
 
 # global variables
@@ -25,5 +26,5 @@ if args.algo == 'gbfs':
     gbfs(puzzles[0], 2, 4)
 if args.algo == 'astar':
     astar(puzzles[0], 2, 4)
-if args.algo == 'uc':
+if args.algo == 'ucs':
     uniform_cost(puzzles[1], 2, 4)

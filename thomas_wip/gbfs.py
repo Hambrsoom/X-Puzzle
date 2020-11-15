@@ -3,6 +3,7 @@ from bisect import insort
 from successor import generateChildStates
 from solution_path import getSolutionPath
 from helper_methods import *
+from search_path import getSearchPath
 
 # sampleStateSpace = {
 #     "currentState": [1,2,3,4,5,6,7,0],
@@ -36,6 +37,9 @@ def gbfs(puzzleArr, numRows, numColumns):
 
     goalNode = None
 
+    firstSolutionList = generateFirstSolutionList(puzzleArr)
+    secondSolutionList = generateSecondSolutionList(numRows, numColumns)
+
     while(not goalFound):
         nodeWeAreLookingAt = open.pop(0)
         print(nodeWeAreLookingAt['currentState'])
@@ -48,14 +52,11 @@ def gbfs(puzzleArr, numRows, numColumns):
         #get children, add to open list
         children = generateChildStates(nodeWeAreLookingAt["currentState"], nodeWeAreLookingAt["gn"], puzzleDimensions)
         children = removeStatesWeHaveAlreadyVisitedFromChildren(children, closed)
-        evaluateHeuristicOnChildren(children, puzzleDimensions)
+        evaluateHeuristicOnChildren(children, puzzleDimensions, firstSolutionList, secondSolutionList)
         open.extend(children)
         open = sorted(open, key=lambda k: k['hn'])
     
-    print("========================")
-    print("Search Path")
-    print("========================")
-    # pprint(closed)
+    getSearchPath(closed, "gbfs", 1)
 
-    solutionPath = getSolutionPath(goalNode, closed)
+    # solutionPath = getSolutionPath(goalNode, closed)
 

@@ -2,6 +2,7 @@ from pprint import pprint
 from bisect import insort 
 from successor import generateChildStates
 from solution_path import getSolutionPath
+from search_path import getSearchPath
 from helper_methods import *
 
 # sampleStateSpace = {
@@ -37,6 +38,9 @@ def astar(puzzleArr, numRows, numColumns):
 
     goalNode = None
 
+    firstSolutionList = generateFirstSolutionList(puzzleArr)
+    secondSolutionList = generateSecondSolutionList(numRows, numColumns)
+
     while(not goalFound):
         nodeWeAreLookingAt = open.pop(0)
         print(nodeWeAreLookingAt['currentState'])
@@ -48,16 +52,13 @@ def astar(puzzleArr, numRows, numColumns):
         #get children, add to open list
         children = generateChildStates(nodeWeAreLookingAt["currentState"], nodeWeAreLookingAt["gn"], puzzleDimensions)
         children = removeStatesWeHaveAlreadyVisitedFromChildren(children, closed)
-        evaluateHeuristicOnChildren(children, puzzleDimensions)
+        evaluateHeuristicOnChildren(children, puzzleDimensions, firstSolutionList, secondSolutionList)
         evaluateStarFunctionOnChildren(children)
 
         open.extend(children)
         open = sorted(open, key=lambda k: k['fn'])
     
-    print("========================")
-    print("Search Path")
-    print("========================")
-    pprint(closed)
+    getSearchPath(closed, "astar", 1)
 
     solutionPath = getSolutionPath(goalNode, closed)
     
