@@ -21,7 +21,7 @@ puzzleDimensions = {
     "numColumns": 0
 }
 
-def uniform_cost(puzzleArr, numRows, numColumns):
+def uniform_cost(puzzleNumber, puzzleArr, numRows, numColumns):
 
     start_time = time.time()
     time_end = start_time + 60
@@ -43,6 +43,8 @@ def uniform_cost(puzzleArr, numRows, numColumns):
     goalFound = False
 
     goalNode = None
+
+    print(open)    
     
     while not goalFound and time.time() <= time_end:
         nodeWeAreLookingAt = open.pop(0)
@@ -55,8 +57,7 @@ def uniform_cost(puzzleArr, numRows, numColumns):
         #get children, add to open list
         children = generateChildStates(nodeWeAreLookingAt["currentState"], nodeWeAreLookingAt["gn"], puzzleDimensions)
         children = removeStatesWeHaveAlreadyVisitedFromChildren(children, closed)
-        open.extend(children)
-        open = sorted(open, key=lambda k: k['gn'])
+        open = addChildrenToOpenList(children, open)
 
     execution_time = time.time() - start_time
     
@@ -65,5 +66,6 @@ def uniform_cost(puzzleArr, numRows, numColumns):
         getSolutionPath(goalNode, closed, "ucs", puzzleNumber, True, "", execution_time)
     else: 
         getSearchPath(closed, "ucs", puzzleNumber, False, "")
-        getSolutionPath(goalNode, closed, "uc", puzzleNumber, False, "")
+        getSolutionPath(goalNode, closed, "ucs", puzzleNumber, False, "", execution_time)
+
 

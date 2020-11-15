@@ -7,7 +7,7 @@ from helper_methods import generateSecondSolutionList
 from uniform_cost import uniform_cost
 
 # global variables
-filePath = "samplePuzzles.txt"
+filePath = "puzzles.txt"
 
 # argument parser with file argument
 parser = ArgumentParser()
@@ -26,6 +26,8 @@ if args.filename is not None:
 puzzles = importPuzzlesFromFile(filePath)
 
 puzzleNumber = 0;
+
+print(puzzles[puzzleNumber])
 
 if args.algo == 'gbfs':
     gbfs(puzzleNumber, puzzles[puzzleNumber], 2, 4)
