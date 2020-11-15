@@ -4,6 +4,7 @@ from successor import generateChildStates
 from solution_path import getSolutionPath
 from helper_methods import *
 from search_path import getSearchPath
+import time
 
 # sampleStateSpace = {
 #     "currentState": [1,2,3,4,5,6,7,0],
@@ -40,7 +41,9 @@ def gbfs(puzzleArr, numRows, numColumns):
     firstSolutionList = generateFirstSolutionList(puzzleArr)
     secondSolutionList = generateSecondSolutionList(numRows, numColumns)
 
-    while(not goalFound):
+    time_end = time.time() + 60
+
+    while not goalFound and time.time() <= time_end:
         nodeWeAreLookingAt = open.pop(0)
         print(nodeWeAreLookingAt['currentState'])
         closed.insert(0, nodeWeAreLookingAt)
@@ -55,8 +58,13 @@ def gbfs(puzzleArr, numRows, numColumns):
         evaluateHeuristicOnChildren(children, puzzleDimensions, firstSolutionList, secondSolutionList)
         open.extend(children)
         open = sorted(open, key=lambda k: k['hn'])
-    
-    getSearchPath(closed, "gbfs", 1)
+        
+    if time.time() <= time_end:
+        getSearchPath(closed, "gbfs", 1, True)
+        getSolutionPath(goalNode, closed)
+    else: 
+        getSearchPath(closed, "gbfs", 1, False)
+        getSolutionPath(goalNode, closed)
 
     # solutionPath = getSolutionPath(goalNode, closed)
 

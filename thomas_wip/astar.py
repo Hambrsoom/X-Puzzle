@@ -4,6 +4,7 @@ from successor import generateChildStates
 from solution_path import getSolutionPath
 from search_path import getSearchPath
 from helper_methods import *
+import time
 
 # sampleStateSpace = {
 #     "currentState": [1,2,3,4,5,6,7,0],
@@ -41,7 +42,9 @@ def astar(puzzleArr, numRows, numColumns):
     firstSolutionList = generateFirstSolutionList(puzzleArr)
     secondSolutionList = generateSecondSolutionList(numRows, numColumns)
 
-    while(not goalFound):
+    time_end = time.time() + 60
+
+    while not goalFound and time.time() <= time_end:
         nodeWeAreLookingAt = open.pop(0)
         print(nodeWeAreLookingAt['currentState'])
         closed.insert(0, nodeWeAreLookingAt)
@@ -58,9 +61,12 @@ def astar(puzzleArr, numRows, numColumns):
         open.extend(children)
         open = sorted(open, key=lambda k: k['fn'])
     
-    getSearchPath(closed, "astar", 1)
-
-    solutionPath = getSolutionPath(goalNode, closed)
+    if time.time() <= time_end:
+        getSearchPath(closed, "astar", 1, True)
+        getSolutionPath(goalNode, closed)
+    else: 
+        getSearchPath(closed, "astar", 1, False)
+        getSolutionPath(goalNode, closed)
     
 
 def evaluateStarFunctionOnChildren(children):

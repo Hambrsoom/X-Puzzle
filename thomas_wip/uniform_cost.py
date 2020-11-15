@@ -4,6 +4,7 @@ from successor import generateChildStates
 from solution_path import getSolutionPath
 from helper_methods import *
 from search_path import getSearchPath
+import time
 
 
 
@@ -21,6 +22,7 @@ puzzleDimensions = {
 }
 
 def uniform_cost(puzzleArr, numRows, numColumns):
+    time_end = time.time() + 60
     print("Running Uniform Cost algo on the following puzzle:")
 
     puzzleDimensions["numRows"] = numRows
@@ -36,8 +38,8 @@ def uniform_cost(puzzleArr, numRows, numColumns):
     goalFound = False
 
     goalNode = None
-
-    while(not goalFound):
+    
+    while not goalFound and time.time() <= time_end:
         nodeWeAreLookingAt = open.pop(0)
         print(nodeWeAreLookingAt['currentState'])
         closed.insert(0, nodeWeAreLookingAt)
@@ -51,8 +53,10 @@ def uniform_cost(puzzleArr, numRows, numColumns):
         open.extend(children)
         open = sorted(open, key=lambda k: k['gn'])
 
-    # we will add the getSearchPath here (calling method from another file)
-
-    getSearchPath(closed, "ucs", 1)
-    getSolutionPath(goalNode, closed)
+    if time.time() <= time_end:
+        getSearchPath(closed, "ucs", 1, True)
+        getSolutionPath(goalNode, closed)
+    else: 
+        getSearchPath(closed, "ucs", 1, False)
+        getSolutionPath(goalNode, closed)
 
