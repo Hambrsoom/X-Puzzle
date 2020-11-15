@@ -62,10 +62,10 @@ def astar(puzzleArr, numRows, numColumns):
         open = sorted(open, key=lambda k: k['fn'])
     
     if time.time() <= time_end:
-        getSearchPath(closed, "astar", 1, True)
+        getSearchPath(closed, "astar", 1, True, "h1")
         getSolutionPath(goalNode, closed)
     else: 
-        getSearchPath(closed, "astar", 1, False)
+        getSearchPath(closed, "astar", 1, False, "h1")
         getSolutionPath(goalNode, closed)
     
 

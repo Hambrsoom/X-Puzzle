@@ -54,9 +54,9 @@ def uniform_cost(puzzleArr, numRows, numColumns):
         open = sorted(open, key=lambda k: k['gn'])
 
     if time.time() <= time_end:
-        getSearchPath(closed, "ucs", 1, True)
+        getSearchPath(closed, "ucs", 1, True, "")
         getSolutionPath(goalNode, closed)
     else: 
-        getSearchPath(closed, "ucs", 1, False)
+        getSearchPath(closed, "ucs", 1, False, "")
         getSolutionPath(goalNode, closed)
 

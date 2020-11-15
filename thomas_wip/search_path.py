@@ -1,10 +1,11 @@
 from pprint import pprint
 from helper_methods import listToString
 
-def getSearchPath(closedArr, algoType, puzzleNumber, foundSolution):
-    print("Search Path")
-    
-    fileName = "output/" + str(puzzleNumber) + "_" + algoType + "_search" +".txt"
+def getSearchPath(closedArr, algoType, puzzleNumber, foundSolution, heuristicFunction):    
+    if heuristicFunction == "":
+        fileName = "output/" + str(puzzleNumber) + "_" + algoType + "_search" +".txt"
+    else:
+        fileName = "output/" + str(puzzleNumber) + "_" + algoType + "-" + heuristicFunction + "_search" +".txt"
 
     file = open(fileName, "w")
 
