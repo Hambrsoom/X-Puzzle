@@ -22,7 +22,10 @@ puzzleDimensions = {
 }
 
 def uniform_cost(puzzleArr, numRows, numColumns):
-    time_end = time.time() + 60
+
+    start_time = time.time()
+    time_end = start_time + 60
+
     print("Running Uniform Cost algo on the following puzzle:")
 
     puzzleDimensions["numRows"] = numRows
@@ -31,6 +34,8 @@ def uniform_cost(puzzleArr, numRows, numColumns):
     open = [{
         "currentState": puzzleArr.copy(),
         "parent": None,
+        "cost": 0,
+        "movedTile": 0,
         "gn": 0
     }]
     closed = []
@@ -53,10 +58,12 @@ def uniform_cost(puzzleArr, numRows, numColumns):
         open.extend(children)
         open = sorted(open, key=lambda k: k['gn'])
 
-    if time.time() <= time_end:
-        getSearchPath(closed, "ucs", 1, True, "")
-        getSolutionPath(goalNode, closed)
+    execution_time = time.time() - start_time
+    
+    if execution_time <= time_end:
+        getSearchPath(closed, "ucs", puzzleNumber, True, "")
+        getSolutionPath(goalNode, closed, "ucs", puzzleNumber, True, "", execution_time)
     else: 
-        getSearchPath(closed, "ucs", 1, False, "")
-        getSolutionPath(goalNode, closed)
+        getSearchPath(closed, "ucs", puzzleNumber, False, "")
+        getSolutionPath(goalNode, closed, "uc", puzzleNumber, False, "")
 

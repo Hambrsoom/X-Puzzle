@@ -19,7 +19,7 @@ puzzleDimensions = {
     "numColumns": 0
 }
 
-def gbfs(puzzleArr, numRows, numColumns):
+def gbfs(puzzleNumber, puzzleArr, numRows, numColumns):
     print("Running A* algo on the following puzzle:")
     print(puzzleArr)
 
@@ -30,7 +30,9 @@ def gbfs(puzzleArr, numRows, numColumns):
         "currentState": puzzleArr.copy(),
         "parent": None,
         "gn": 0,
-        "hn": 0
+        "hn": 0,
+        "cost": 0,
+        "movedTile": 0
     }]
     closed = []
 
@@ -41,13 +43,13 @@ def gbfs(puzzleArr, numRows, numColumns):
     firstSolutionList = generateFirstSolutionList(puzzleArr)
     secondSolutionList = generateSecondSolutionList(numRows, numColumns)
 
-    time_end = time.time() + 60
+    start_time = time.time()
+    time_end = start_time + 60
 
     while not goalFound and time.time() <= time_end:
         nodeWeAreLookingAt = open.pop(0)
         print(nodeWeAreLookingAt['currentState'])
         closed.insert(0, nodeWeAreLookingAt)
-
 
         goalFound = isGoal(nodeWeAreLookingAt['currentState'], puzzleDimensions)
         if goalFound: goalNode = nodeWeAreLookingAt
@@ -58,13 +60,15 @@ def gbfs(puzzleArr, numRows, numColumns):
         evaluateHeuristicOnChildren(children, puzzleDimensions, firstSolutionList, secondSolutionList)
         open.extend(children)
         open = sorted(open, key=lambda k: k['hn'])
-        
-    if time.time() <= time_end:
-        getSearchPath(closed, "gbfs", 1, True, "h1")
-        getSolutionPath(goalNode, closed)
+
+    execution_time = time.time() - start_time
+    
+    if execution_time <= time_end:
+        getSearchPath(closed, "gbfs", puzzleNumber, True, "h1")
+        getSolutionPath(goalNode, closed, "gbfs", puzzleNumber, True, "h1", execution_time)
     else: 
-        getSearchPath(closed, "gbfs", 1, False, "h1")
-        getSolutionPath(goalNode, closed)
+        getSearchPath(closed, "gbfs", puzzleNumber, False, "h1")
+        getSolutionPath(goalNode, closed, "gbfs", puzzleNumber, False, "h1", execution_time)
 
     # solutionPath = getSolutionPath(goalNode, closed)
 

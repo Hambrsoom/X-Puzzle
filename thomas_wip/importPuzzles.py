@@ -9,16 +9,16 @@ def importPuzzlesFromFile(filePath):
         return res
 
 
-def generateFileOfFiftyPuzzles(nRows, nColumns, nPuzzles):
-    list = []
+# def generateFileOfFiftyPuzzles(nRows, nColumns, nPuzzles):
+#     list = []
 
-    file = open("puzzles.txt", "w")    
+#     file = open("puzzles.txt", "w")    
     
-    for number in range(nRows*nColumns):
-        list.append(number)
+#     for number in range(nRows*nColumns):
+#         list.append(number)
 
-    for number in range(nPuzzles):
-        random.shuffle(list)
-        file.write(listToString(list) + "\n")
+#     for number in range(nPuzzles):
+#         random.shuffle(list)
+#         file.write(listToString(list) + "\n")
 
-    file.close()
+#     file.close()

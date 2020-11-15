@@ -6,99 +6,147 @@ def generateChildStates(puzzleArr, gn, puzzleDimensions):
 
     #regular moves
     if isLeftEdge(zeroTileIndex, puzzleArr, puzzleDimensions) == False:
+        move, movedTile = generateMoveLeft(zeroTileIndex, puzzleArr.copy(), puzzleDimensions)
         children.append({
-            "currentState": generateMoveLeft(zeroTileIndex, puzzleArr.copy(), puzzleDimensions),
+            "currentState": move,
             "parent": puzzleArr,
+            "movedTile": movedTile,
+            "cost": 1,
             "gn": gn+1
         })
     if isRightEdge(zeroTileIndex, puzzleArr, puzzleDimensions) == False:
+        move, movedTile = generateMoveRight(zeroTileIndex, puzzleArr.copy(), puzzleDimensions)
         children.append({
-            "currentState": generateMoveRight(zeroTileIndex, puzzleArr.copy(), puzzleDimensions),
+            "currentState": move,
             "parent": puzzleArr,
+            "movedTile": movedTile,
+            "cost": 1,
             "gn": gn+1
         })
     if isBottomEdge(zeroTileIndex, puzzleArr, puzzleDimensions) == False:
+        move, movedTile = generateMoveBottom(zeroTileIndex, puzzleArr.copy(), puzzleDimensions)
         children.append({
-            "currentState": generateMoveBottom(zeroTileIndex, puzzleArr.copy(), puzzleDimensions),
+            "currentState": move,
             "parent": puzzleArr,
+            "movedTile": movedTile,
+            "cost": 1,
             "gn": gn+1
         })
     if isTopEdge(zeroTileIndex, puzzleArr, puzzleDimensions) == False:
+        move, movedTile = generateMoveTop(zeroTileIndex, puzzleArr.copy(), puzzleDimensions)
         children.append({
-            "currentState": generateMoveTop(zeroTileIndex, puzzleArr.copy(), puzzleDimensions),
+            "currentState": move,
             "parent": puzzleArr,
+            "movedTile": movedTile,
+            "cost": 1,
             "gn": gn+1
         })
 
     #wrapping move
     if isTopEdge(zeroTileIndex, puzzleArr, puzzleDimensions) and isLeftEdge(zeroTileIndex, puzzleArr, puzzleDimensions):
+        move, movedTile = generateWrapLeftEdge(zeroTileIndex, puzzleArr.copy(), puzzleDimensions)
         children.append({
-            "currentState": generateWrapLeftEdge(zeroTileIndex, puzzleArr.copy(), puzzleDimensions),
+            "currentState": move,
             "parent": puzzleArr,
+            "movedTile": movedTile,
+            "cost": 2,
             "gn": gn+2
         })
     if isBottomEdge(zeroTileIndex, puzzleArr, puzzleDimensions) and isLeftEdge(zeroTileIndex, puzzleArr, puzzleDimensions):
+        move, movedTile = generateWrapLeftEdge(zeroTileIndex, puzzleArr.copy(), puzzleDimensions)
         children.append({
-            "currentState": generateWrapLeftEdge(zeroTileIndex, puzzleArr.copy(), puzzleDimensions),
+            "currentState": move,
             "parent": puzzleArr,
+            "movedTile": movedTile,
+            "cost": 2,
             "gn": gn+2
         })
     if isTopEdge(zeroTileIndex, puzzleArr, puzzleDimensions) and isRightEdge(zeroTileIndex, puzzleArr, puzzleDimensions):
+        move, movedTile = generateWrapRightEdge(zeroTileIndex, puzzleArr.copy(), puzzleDimensions)
         children.append({
-            "currentState": generateWrapRightEdge(zeroTileIndex, puzzleArr.copy(), puzzleDimensions),
+            "currentState": move,
             "parent": puzzleArr,
+            "movedTile": movedTile,
+            "cost": 2,
             "gn": gn+2
         })
     if isBottomEdge(zeroTileIndex, puzzleArr, puzzleDimensions) and isRightEdge(zeroTileIndex, puzzleArr, puzzleDimensions):
+        move, movedTile = generateWrapRightEdge(zeroTileIndex, puzzleArr.copy(), puzzleDimensions)
         children.append({
-            "currentState": generateWrapRightEdge(zeroTileIndex, puzzleArr.copy(), puzzleDimensions),
+            "currentState": move,
             "parent": puzzleArr,
+            "movedTile": movedTile,
+            "cost": 2,
             "gn": gn+2
         })
 
     #diagonal move
     if isTopEdge(zeroTileIndex, puzzleArr, puzzleDimensions) and isLeftEdge(zeroTileIndex, puzzleArr, puzzleDimensions):
+        move, movedTile = swapTopLeftCorner(zeroTileIndex, puzzleArr.copy(), puzzleDimensions)
         children.append({
-            "currentState": swapTopLeftCorner(zeroTileIndex, puzzleArr.copy(), puzzleDimensions),
+            "currentState": move,
             "parent": puzzleArr,
+            "movedTile": movedTile,
+            "cost": 3,
             "gn": gn + 3
         })
+        move, movedTile = generateDiagonalTopLeft(zeroTileIndex, puzzleArr.copy(), puzzleDimensions)
         children.append({
-            "currentState": generateDiagonalTopLeft(zeroTileIndex, puzzleArr.copy(), puzzleDimensions),
+            "currentState": move,
             "parent": puzzleArr,
+            "movedTile": movedTile,
+            "cost": 3,
             "gn": gn + 3
         })
     if isTopEdge(zeroTileIndex, puzzleArr, puzzleDimensions) and isRightEdge(zeroTileIndex, puzzleArr, puzzleDimensions):
+        move, movedTile = swapTopRightCorner(zeroTileIndex, puzzleArr.copy(), puzzleDimensions)
         children.append({
-            "currentState": swapTopRightCorner(zeroTileIndex, puzzleArr.copy(), puzzleDimensions),
+            "currentState": move,
             "parent": puzzleArr,
+            "movedTile": movedTile,
+            "cost": 3,
             "gn": gn + 3
         })
+        move, movedTile = generateDiagonalTopRight(zeroTileIndex, puzzleArr.copy(), puzzleDimensions)
         children.append({
-            "currentState": generateDiagonalTopRight(zeroTileIndex, puzzleArr.copy(), puzzleDimensions),
+            "currentState": move,
             "parent": puzzleArr,
+            "movedTile": movedTile,
+            "cost": 3,
             "gn": gn + 3
         })
     if isBottomEdge(zeroTileIndex, puzzleArr, puzzleDimensions) and isLeftEdge(zeroTileIndex, puzzleArr, puzzleDimensions):
+        move, movedTile = swapBottomLeftCorner(zeroTileIndex, puzzleArr.copy(), puzzleDimensions)
         children.append({
-            "currentState": swapBottomLeftCorner(zeroTileIndex, puzzleArr.copy(), puzzleDimensions),
+            "currentState": move,
             "parent": puzzleArr,
+            "movedTile": movedTile,
+            "cost": 3,
             "gn": gn + 3
         })
+        move, movedTile = generateDiagonalBottomLeft(zeroTileIndex, puzzleArr.copy(), puzzleDimensions)
         children.append({
-            "currentState": generateDiagonalBottomLeft(zeroTileIndex, puzzleArr.copy(), puzzleDimensions),
+            "currentState": move,
             "parent": puzzleArr,
+            "movedTile": movedTile,
+            "cost": 3,
             "gn": gn + 3
         })
     if isBottomEdge(zeroTileIndex, puzzleArr, puzzleDimensions) and isRightEdge(zeroTileIndex, puzzleArr, puzzleDimensions):
+        move, movedTile = swapRightBottomCorner(zeroTileIndex, puzzleArr.copy(), puzzleDimensions)
         children.append({
-            "currentState": swapRightBottomCorner(zeroTileIndex, puzzleArr.copy(), puzzleDimensions),
+            "currentState": move,
             "parent": puzzleArr,
+            "movedTile": movedTile,
+            "cost": 3,
             "gn": gn + 3
         })
+        move, movedTile = generateDiagonalBottomRight(zeroTileIndex, puzzleArr.copy(), puzzleDimensions)
         children.append({
-            "currentState": generateDiagonalBottomRight(zeroTileIndex, puzzleArr.copy(), puzzleDimensions),
+            "currentState": move,
             "parent": puzzleArr,
+            "movedTile": movedTile,
+            "cost": 3,
             "gn": gn + 3
         })
     
@@ -121,68 +169,68 @@ def isBottomEdge(puzzleTileIndex, puzzleArr, puzzleDimensions):
 def generateDiagonalBottomRight(index, puzzleArr, puzzleDimensions): #when zero in top left
     n = (puzzleDimensions["numRows"]-1) * puzzleDimensions["numColumns"] - 2
     puzzleArr[n], puzzleArr[index] = puzzleArr[index], puzzleArr[n]
-    return puzzleArr
+    return puzzleArr, puzzleArr[index]
 
 def generateDiagonalBottomLeft(index, puzzleArr, puzzleDimensions): #when zero in top left
     n = (puzzleDimensions["numRows"]-2) * puzzleDimensions["numColumns"] + 1
     puzzleArr[n], puzzleArr[index] = puzzleArr[index], puzzleArr[n]
-    return puzzleArr
+    return puzzleArr, puzzleArr[index]
 
 def generateDiagonalTopRight(index, puzzleArr, puzzleDimensions): #when zero in top left
     n = 2*puzzleDimensions["numColumns"] - 2
     puzzleArr[n], puzzleArr[index] = puzzleArr[index], puzzleArr[n]
-    return puzzleArr
+    return puzzleArr, puzzleArr[index]
 
 def generateDiagonalTopLeft(index, puzzleArr, puzzleDimensions): #when zero in top left
     n = puzzleDimensions["numColumns"] + 1
     puzzleArr[n], puzzleArr[index] = puzzleArr[index], puzzleArr[n]
-    return puzzleArr
+    return puzzleArr, puzzleArr[index]
 
 def swapBottomLeftCorner(index, puzzleArr, puzzleDimensions): #when zero in bottom left corner, swap with top right corner
     n = puzzleDimensions["numColumns"] - 1 
     puzzleArr[n], puzzleArr[index] = puzzleArr[index], puzzleArr[n]
-    return puzzleArr
+    return puzzleArr, puzzleArr[index]
 
 def swapTopRightCorner(index, puzzleArr, puzzleDimensions): #when zero in top right corner, swap with bottom left corner
     n = (puzzleDimensions["numRows"]-1) * puzzleDimensions["numColumns"] + 1 
     puzzleArr[n], puzzleArr[index] = puzzleArr[index], puzzleArr[n]
-    return puzzleArr
+    return puzzleArr, puzzleArr[index]
 
 def swapTopLeftCorner(index, puzzleArr, puzzleDimensions): #when zero in top left corner, swap with bottom right corner
     n = puzzleDimensions["numRows"] * puzzleDimensions["numColumns"] - 1
     puzzleArr[n], puzzleArr[index] = puzzleArr[index], puzzleArr[n]
-    return puzzleArr
+    return puzzleArr, puzzleArr[index]
 
 def swapRightBottomCorner(index, puzzleArr, puzzleDimensions): #when zero in bottom right corner, swap with top left corner
     puzzleArr[0], puzzleArr[index] = puzzleArr[index], puzzleArr[0]
-    return puzzleArr
+    return puzzleArr, puzzleArr[index]
 
 def generateWrapRightEdge(index, puzzleArr, puzzleDimensions): #when zero on right edge
     n = puzzleDimensions["numColumns"]
     newIndex = index - n + 1
     puzzleArr[newIndex], puzzleArr[index] = puzzleArr[index], puzzleArr[newIndex]
-    return puzzleArr
+    return puzzleArr, puzzleArr[index]
 
 def generateWrapLeftEdge(index, puzzleArr, puzzleDimensions): #when zero on left edge
     n = puzzleDimensions["numColumns"]
     newIndex = index + n - 1
     puzzleArr[newIndex], puzzleArr[index] = puzzleArr[index], puzzleArr[newIndex]
-    return puzzleArr
+    return puzzleArr, puzzleArr[index]
 
 def generateMoveTop(index, puzzleArr, puzzleDimensions):
     n = puzzleDimensions["numColumns"]
     puzzleArr[index-n], puzzleArr[index] = puzzleArr[index], puzzleArr[index-n]
-    return puzzleArr
+    return puzzleArr, puzzleArr[index]
 
 def generateMoveBottom(index, puzzleArr, puzzleDimensions):
     n = puzzleDimensions["numColumns"]
     puzzleArr[index+n], puzzleArr[index] = puzzleArr[index], puzzleArr[index+n]
-    return puzzleArr
+    return puzzleArr, puzzleArr[index]
 
 def generateMoveRight(index, puzzleArr, puzzleDimensions):
     puzzleArr[index+1], puzzleArr[index] = puzzleArr[index], puzzleArr[index+1]
-    return puzzleArr
+    return puzzleArr, puzzleArr[index]
 
 def generateMoveLeft(index, puzzleArr, puzzleDimensions):
     puzzleArr[index-1], puzzleArr[index] = puzzleArr[index], puzzleArr[index-1]
-    return puzzleArr
+    return puzzleArr, puzzleArr[index]

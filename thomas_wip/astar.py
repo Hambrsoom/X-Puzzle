@@ -19,7 +19,7 @@ puzzleDimensions = {
     "numColumns": 0
 }
 
-def astar(puzzleArr, numRows, numColumns):
+def astar(puzzleNumber, puzzleArr, numRows, numColumns):
     print("Running A* algo on the following puzzle:")
     print(puzzleArr)
 
@@ -31,7 +31,9 @@ def astar(puzzleArr, numRows, numColumns):
         "parent": None,
         "gn": 0,
         "hn": 0,
-        "fn": 0
+        "fn": 0,
+        "cost": 0,
+        "movedTile": 0
     }]
     closed = []
 
@@ -42,7 +44,8 @@ def astar(puzzleArr, numRows, numColumns):
     firstSolutionList = generateFirstSolutionList(puzzleArr)
     secondSolutionList = generateSecondSolutionList(numRows, numColumns)
 
-    time_end = time.time() + 60
+    start_time = time.time()
+    time_end = start_time + 60
 
     while not goalFound and time.time() <= time_end:
         nodeWeAreLookingAt = open.pop(0)
@@ -60,13 +63,15 @@ def astar(puzzleArr, numRows, numColumns):
 
         open.extend(children)
         open = sorted(open, key=lambda k: k['fn'])
+
+    execution_time = time.time() - start_time
     
-    if time.time() <= time_end:
-        getSearchPath(closed, "astar", 1, True, "h1")
-        getSolutionPath(goalNode, closed)
+    if execution_time <= time_end:
+        getSearchPath(closed, "astar", puzzleNumber, True, "h1")
+        getSolutionPath(goalNode, closed, "astar", puzzleNumber, True, "h1", execution_time)
     else: 
-        getSearchPath(closed, "astar", 1, False, "h1")
-        getSolutionPath(goalNode, closed)
+        getSearchPath(closed, "astar", puzzleNumber, False, "h1")
+        getSolutionPath(goalNode, closed, "astar", puzzleNumber, False, "h1", execution_time)
     
 
 def evaluateStarFunctionOnChildren(children):

@@ -20,14 +20,16 @@ if args.filename is not None:
     filePath = args.filename
 
 # generate random 50 puzzles of the dimenstion 2*4:
-generateFileOfFiftyPuzzles(2,4, 50)
+#generateFileOfFiftyPuzzles(2,4, 50)
 
 # import puzzles
 puzzles = importPuzzlesFromFile(filePath)
 
+puzzleNumber = 0;
+
 if args.algo == 'gbfs':
-    gbfs(puzzles[0], 2, 4)
+    gbfs(puzzleNumber, puzzles[puzzleNumber], 2, 4)
 if args.algo == 'astar':
-    astar(puzzles[0], 2, 4)
+    astar(puzzleNumber, puzzles[puzzleNumber], 2, 4)
 if args.algo == 'ucs':
-    uniform_cost(puzzles[1], 2, 4)
+    uniform_cost(puzzleNumber, puzzles[puzzleNumber], 2, 4)
