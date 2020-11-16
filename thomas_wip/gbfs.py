@@ -63,12 +63,11 @@ def gbfs(puzzleNumber, puzzleArr, numRows, numColumns):
 
     execution_time = time.time() - start_time
     
-    if execution_time <= time_end:
+    if time.time() <= time_end:
         getSearchPath(closed, "gbfs", puzzleNumber, True, "h1")
         getSolutionPath(goalNode, closed, "gbfs", puzzleNumber, True, "h1", execution_time)
     else: 
         getSearchPath(closed, "gbfs", puzzleNumber, False, "h1")
         getSolutionPath(goalNode, closed, "gbfs", puzzleNumber, False, "h1", execution_time)
 
-    # solutionPath = getSolutionPath(goalNode, closed)
 

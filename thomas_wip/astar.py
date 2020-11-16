@@ -57,16 +57,16 @@ def astar(puzzleNumber, puzzleArr, numRows, numColumns):
 
         #get children, add to open list
         children = generateChildStates(nodeWeAreLookingAt["currentState"], nodeWeAreLookingAt["gn"], puzzleDimensions)
-        children = removeStatesWeHaveAlreadyVisitedFromChildren(children, closed)
+        
         evaluateHeuristicOnChildren(children, puzzleDimensions, firstSolutionList, secondSolutionList)
         evaluateStarFunctionOnChildren(children)
 
-        open.extend(children)
+        open = admissibilityUpdateOpenList(children, open, closed)
         open = sorted(open, key=lambda k: k['fn'])
 
     execution_time = time.time() - start_time
     
-    if execution_time <= time_end:
+    if time.time() <= time_end:
         getSearchPath(closed, "astar", puzzleNumber, True, "h1")
         getSolutionPath(goalNode, closed, "astar", puzzleNumber, True, "h1", execution_time)
     else: 
@@ -77,3 +77,25 @@ def astar(puzzleNumber, puzzleArr, numRows, numColumns):
 def evaluateStarFunctionOnChildren(children):
     for child in children:
         child["fn"] = child["hn"] + child["gn"]
+
+def admissibilityUpdateOpenList(children, open, closed):
+    for child in children:
+        isInOpenOrClosed = 0
+        for closedElement in closed:
+            if child["currentState"] == closedElement["currentState"]:
+                isInOpenOrClosed = 1
+                if int(child["fn"]) < int(closedElement["fn"]):
+                    closed.remove(closedElement)
+                    open.append(closedElement)
+                    break
+        if(isInOpenOrClosed == 0):        
+            for element in open:
+                if child["currentState"] == element["currentState"]:
+                    isInOpenOrClosed = 1
+                    if int(child["fn"]) < int(element["fn"]):
+                        open[open.index(element)] = child
+                        break
+        if(isInOpenOrClosed == 0):        
+            open.append(child)
+        
+    return open;       

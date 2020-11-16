@@ -16,16 +16,22 @@ def removeStatesWeHaveAlreadyVisitedFromChildren(children, closed):
     return children
 
 def addChildrenToOpenList(children, open):
-    if len(open) != 0:
+    if len(open) > 0 :
         for child in children:
+            updatedInOpen = 0
             for element in open:
-                if child["currentState"] == element["currentState"] and int(child["gn"]) < int(element["gn"]):
-                    open.remove(element)
-                    open.append(child)
+                if child["currentState"] == element["currentState"]:
+                    updatedInOpen = 1
+                    if int(child["gn"]) < int(element["gn"]):
+                        open[open.index(element)] = child
+                        break
+
+            if(updatedInOpen == 0):
+                open.append(child)
     else:
         open.extend(children)
-    return sorted(open, key=lambda k: k['gn'])
-
+        
+    return open;
 
 
 def evaluateHeuristicOnChildren(children, puzzleDimensions, firstSolutionList, secondSolutionList):

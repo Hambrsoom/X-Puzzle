@@ -13,6 +13,8 @@ def getSolutionPath(goalNode, closedArr, algoType, puzzleNumber, foundSolution, 
 
     file = open(fileName, "w")
 
+    print(foundSolution)
+
     if foundSolution:
         solutionPath = []
         solutionPath.append(goalNode)
