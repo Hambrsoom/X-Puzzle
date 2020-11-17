@@ -3,7 +3,7 @@ from sympy.combinatorics.permutations import Permutation
 import numpy as np
 
 #Hamming distance
-def h1(puzzleArray, xDim, yDim, firstSolutionList, secondSolutionList):
+def hammingDistance(puzzleArray, xDim, yDim, firstSolutionList, secondSolutionList):
     elementShouldEqualTo = 1
     hn1 = 0
     hn2 = 0
@@ -18,7 +18,7 @@ def h1(puzzleArray, xDim, yDim, firstSolutionList, secondSolutionList):
     return min(hn1, hn2) 
 
 # Manhattan
-def h2(puzzleArray, nRows, nColumns, firstSolutionList, secondSolutionList):
+def manhattan(puzzleArray, nRows, nColumns, firstSolutionList, secondSolutionList):
     chunksProperListFirstSolution = [firstSolutionList[x:x+nColumns] for x in range(0, len(firstSolutionList), nColumns)]
     chunksProperListSecondSolution = [secondSolutionList[x:x+nColumns] for x in range(0, len(secondSolutionList), nColumns)]
 

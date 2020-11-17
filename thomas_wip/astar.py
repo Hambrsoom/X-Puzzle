@@ -19,9 +19,8 @@ puzzleDimensions = {
     "numColumns": 0
 }
 
-def astar(puzzleNumber, puzzleArr, numRows, numColumns):
+def astar(puzzleNumber, puzzleArr, numRows, numColumns, heuristicType):
     print("Running A* algo on the following puzzle:")
-    print(puzzleArr)
 
     puzzleDimensions["numRows"] = numRows
     puzzleDimensions["numColumns"] = numColumns
@@ -58,24 +57,20 @@ def astar(puzzleNumber, puzzleArr, numRows, numColumns):
         #get children, add to open list
         children = generateChildStates(nodeWeAreLookingAt["currentState"], nodeWeAreLookingAt["gn"], puzzleDimensions)
         
-        evaluateHeuristicOnChildren(children, puzzleDimensions, firstSolutionList, secondSolutionList)
+        evaluateHeuristicOnChildren(children, puzzleDimensions, firstSolutionList, secondSolutionList, heuristicType)
         evaluateStarFunctionOnChildren(children)
-<<<<<<< Updated upstream
 
         open = admissibilityUpdateOpenList(children, open, closed)
-=======
-        open.extend(children)
->>>>>>> Stashed changes
         open = sorted(open, key=lambda k: k['fn'])
 
     execution_time = time.time() - start_time
     
     if time.time() <= time_end:
-        getSearchPath(closed, "astar", puzzleNumber, True, "h1")
-        getSolutionPath(goalNode, closed, "astar", puzzleNumber, True, "h1", execution_time)
+        getSearchPath(closed, "astar", puzzleNumber, True, heuristicType)
+        getSolutionPath(goalNode, closed, "astar", puzzleNumber, True, heuristicType, execution_time)
     else: 
-        getSearchPath(closed, "astar", puzzleNumber, False, "h1")
-        getSolutionPath(goalNode, closed, "astar", puzzleNumber, False, "h1", execution_time)
+        getSearchPath(closed, "astar", puzzleNumber, False, heuristicType)
+        getSolutionPath(goalNode, closed, "astar", puzzleNumber, False, heuristicType, execution_time)
     
 
 def evaluateStarFunctionOnChildren(children):

@@ -5,6 +5,7 @@ from astar import astar
 from gbfs import gbfs
 from helper_methods import generateSecondSolutionList
 from uniform_cost import uniform_cost
+from generate_output_files import generateSolutionAndSearchFiles
 
 # global variables
 filePath = "puzzles.txt"
@@ -25,13 +26,10 @@ if args.filename is not None:
 # import puzzles
 puzzles = importPuzzlesFromFile(filePath)
 
-puzzleNumber = 0;
-
-print(puzzles[puzzleNumber])
-
-if args.algo == 'gbfs':
-    gbfs(puzzleNumber, puzzles[puzzleNumber], 2, 4)
-if args.algo == 'astar':
-    astar(puzzleNumber, puzzles[puzzleNumber], 2, 4)
-if args.algo == 'ucs':
-    uniform_cost(puzzleNumber, puzzles[puzzleNumber], 2, 4)
+generateSolutionAndSearchFiles(puzzles, 2, 4)
+# if args.algo == 'gbfs':
+#     gbfs(puzzleNumber, puzzles[puzzleNumber], 2, 4)
+# if args.algo == 'astar':
+#     astar(puzzleNumber, puzzles[puzzleNumber], 2, 4)
+# if args.algo == 'ucs':
+#     uniform_cost(puzzleNumber, puzzles[puzzleNumber], 2, 4)

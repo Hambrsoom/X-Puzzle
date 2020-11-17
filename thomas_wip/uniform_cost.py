@@ -42,15 +42,9 @@ def uniform_cost(puzzleNumber, puzzleArr, numRows, numColumns):
 
     goalFound = False
 
-<<<<<<< Updated upstream
     goalNode = None   
     
     while not goalFound and time.time() <= time_end:
-=======
-    goalNode = None
-
-        while not goalFound and time.time() <= time_end:
->>>>>>> Stashed changes
         nodeWeAreLookingAt = open.pop(0)
         print(nodeWeAreLookingAt['currentState'])        
         closed.insert(0, nodeWeAreLookingAt)
@@ -70,7 +64,7 @@ def uniform_cost(puzzleNumber, puzzleArr, numRows, numColumns):
         getSearchPath(closed, "ucs", puzzleNumber, True, "")
         getSolutionPath(goalNode, closed, "ucs", puzzleNumber, True, "", execution_time)
     else: 
-        print("no sol")
+        print("no solution")
         getSearchPath(closed, "ucs", puzzleNumber, False, "")
         getSolutionPath(goalNode, closed, "ucs", puzzleNumber, False, "", execution_time)
 

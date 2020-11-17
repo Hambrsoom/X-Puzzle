@@ -19,7 +19,7 @@ puzzleDimensions = {
     "numColumns": 0
 }
 
-def gbfs(puzzleNumber, puzzleArr, numRows, numColumns):
+def gbfs(puzzleNumber, puzzleArr, numRows, numColumns, heuristicType):
     print("Running A* algo on the following puzzle:")
     print(puzzleArr)
 
@@ -57,17 +57,17 @@ def gbfs(puzzleNumber, puzzleArr, numRows, numColumns):
         #get children, add to open list
         children = generateChildStates(nodeWeAreLookingAt["currentState"], nodeWeAreLookingAt["gn"], puzzleDimensions)
         children = removeStatesWeHaveAlreadyVisitedFromChildren(children, closed)
-        evaluateHeuristicOnChildren(children, puzzleDimensions, firstSolutionList, secondSolutionList)
+        evaluateHeuristicOnChildren(children, puzzleDimensions, firstSolutionList, secondSolutionList, heuristicType)
         open.extend(children)
         open = sorted(open, key=lambda k: k['hn'])
 
     execution_time = time.time() - start_time
     
     if time.time() <= time_end:
-        getSearchPath(closed, "gbfs", puzzleNumber, True, "h1")
-        getSolutionPath(goalNode, closed, "gbfs", puzzleNumber, True, "h1", execution_time)
+        getSearchPath(closed, "gbfs", puzzleNumber, True, heuristicType)
+        getSolutionPath(goalNode, closed, "gbfs", puzzleNumber, True, heuristicType, execution_time)
     else: 
-        getSearchPath(closed, "gbfs", puzzleNumber, False, "h1")
-        getSolutionPath(goalNode, closed, "gbfs", puzzleNumber, False, "h1", execution_time)
+        getSearchPath(closed, "gbfs", puzzleNumber, False, heuristicType)
+        getSolutionPath(goalNode, closed, "gbfs", puzzleNumber, False, heuristicType, execution_time)
 
 
