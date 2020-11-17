@@ -1,0 +1,85 @@
+ average & total length of the solution paths 
+
+Total ucs solution path: 155
+Average ucs solution path: 3.1
+
+Total gbfs-h1 solution path: 1010
+Average gbfs-h1 solution path: 20.2
+
+Total gbfs-h2 solution path: 1054
+Average gbfs-h2 solution path: 21.08
+
+Total astar-h1 solution path: 530
+Average astar-h1 solution path: 10.6
+
+Total astar-h2 solution path: 0
+Average astar-h2 solution path: 0.0
+
+average & total length of the search paths: 
+
+Total ucs search path: 84024
+Average ucs search path: 1680.48
+
+Total gbfs-h1 search path: 11792
+Average gbfs-h1 search path: 235.84
+
+Total gbfs-h2 search path: 21093
+Average gbfs-h2 search path: 421.86
+
+Total astar-h1 search path: 82152
+Average astar-h1 search path: 1643.04
+
+Total astar-h2 search path: 55410
+Average astar-h2 search path: 1108.2
+
+average & total number of no solution: 
+
+Total number of no solution with ucs: 34
+Average number of no solution with ucs: 0.68
+
+Total number of no solution with gbfs-h1: 1010
+Average number of no solution with gbfs-h1: 20.2
+
+Total number of no solution with gbfs-h2: 1054
+Average number of no solution with gbfs-h2: 21.08
+
+Total number of no solution with astar-h1: 530
+Average number of no solution with astar-h1: 10.6
+
+Total number of no solution with astar-h2: 0
+Average number of no solution with astar-h2: 0.0
+
+average & total cost: 
+
+Total cost of ucs: 189
+Average cost of ucs: 3.78
+
+Total cost of gbfs-h1: 1513
+Average cost of gbfs-h1: 30.26
+
+Total cost of with gbfs-h2: 1690
+Average cost of gbfs-h2: 33.8
+
+Total cost of astar-h1: 642
+Average cost of astar-h1: 12.84
+
+Total cost of astar-h2: 0
+Average cost of astar-h2: 0.0
+
+average & total execution time: 
+
+Total execution time of ucs: 443.62257838249207
+Average execution time of ucs: 8.872451567649842
+
+Total execution time of gbfs-h1: 7.034151792526245
+Average execution time of gbfs-h1: 0.1406830358505249
+
+Total execution time of with gbfs-h2: 26.08915376663208
+Average execution time of gbfs-h2: 0.5217830753326416
+
+Total execution time of astar-h1: 360.47782588005066
+Average execution time of astar-h1: 7.209556517601013
+
+Total execution time of astar-h2: 0
+Average execution time of astar-h2: 0.0
+
