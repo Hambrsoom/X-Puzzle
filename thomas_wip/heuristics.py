@@ -30,7 +30,7 @@ def manhattan(puzzleArray, nRows, nColumns, firstSolutionList, secondSolutionLis
             properLocationXFirstSolution, porperLocationYFirstSolution = properLocationOfNode(chunksPuzzleList[i][j], chunksProperListFirstSolution)
             properLocationXSecondSolution, porperLocationYSecondSolution = properLocationOfNode(chunksPuzzleList[i][j], chunksProperListSecondSolution)
 
-            totalCost = totalCost + min(calculateCost(properLocationXFirstSolution, porperLocationYFirstSolution, i, j),  calculateCost(properLocationXSecondSolution, porperLocationYSecondSolution, i, j))
+            totalCost = totalCost + min(calculateCost(properLocationXFirstSolution, porperLocationYFirstSolution, i, j, nRows, nColumns),  calculateCost(properLocationXSecondSolution, porperLocationYSecondSolution, i, j, nRows, nColumns))
     return totalCost
 
 def properLocationOfNode(node, list):
@@ -39,7 +39,19 @@ def properLocationOfNode(node, list):
             if list[i][j] == int(node):
                 return i, j
 
-def calculateCost(properX, properY, realX, realY):
+def calculateCost(properX, properY, realX, realY, nRows, nColumns):
+    if realX == properX and ((realX == 0 and properX == nColumns-1) or (realX == nColumns-1 and properX == 0)):
+        return 2
+    if nRows > 1 and realY == properY and ((realY == 0 and properY == nRows-1)) or (realY == nRows-1 and properY == 0):
+        return 2
+    if (realX == 0 and realY == 0) and (properX == nRows-1 and properY ==  nColumns-1):
+        return 3
+    if (properX == 0 and properY == 0) and (realX == nRows-1 and realY ==  nColumns-1):
+        return 3
+    if (realX == 0 and realY == nColumns-1) and (properX == nRows-1 and properY == 0):
+        return 3
+    if (realX == nRows-1 and realY == 0) and (properX == 0 and properY == nColumns-1):
+        return 3
     return abs(properX-realX) + abs(properY - realY)
 
 

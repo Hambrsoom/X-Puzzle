@@ -20,7 +20,7 @@ puzzleDimensions = {
 }
 
 def gbfs(puzzleNumber, puzzleArr, numRows, numColumns, heuristicType):
-    print("Running A* algo on the following puzzle:")
+    print("Running gbfs algo on the following puzzle:")
     print(puzzleArr)
 
     puzzleDimensions["numRows"] = numRows

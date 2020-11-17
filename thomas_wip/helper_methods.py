@@ -1,4 +1,4 @@
-from heuristics import hammingDistance, manhattan
+from heuristics import hammingDistance, manhattan, h3
 # h0
 # h1 -> Hamming
 # h2 -> Manhattan
@@ -40,7 +40,8 @@ def evaluateHeuristicOnChildren(children, puzzleDimensions, firstSolutionList, s
             child["hn"] = hammingDistance(child['currentState'], puzzleDimensions["numColumns"], puzzleDimensions["numRows"], firstSolutionList, secondSolutionList)
         elif heuristicType == "h2":
             child["hn"] = manhattan(child['currentState'], puzzleDimensions["numColumns"], puzzleDimensions["numRows"], firstSolutionList, secondSolutionList)
-
+        elif heuristicType == "h3":
+            child["hn"] = h3(child['currentState'], puzzleDimensions["numColumns"], puzzleDimensions["numRows"], firstSolutionList, secondSolutionList)
 
 
 def isGoal(puzzleArr, puzzleDimensions):
