@@ -60,8 +60,12 @@ def astar(puzzleNumber, puzzleArr, numRows, numColumns):
         
         evaluateHeuristicOnChildren(children, puzzleDimensions, firstSolutionList, secondSolutionList)
         evaluateStarFunctionOnChildren(children)
+<<<<<<< Updated upstream
 
         open = admissibilityUpdateOpenList(children, open, closed)
+=======
+        open.extend(children)
+>>>>>>> Stashed changes
         open = sorted(open, key=lambda k: k['fn'])
 
     execution_time = time.time() - start_time
