@@ -98,7 +98,7 @@ for filename in os.listdir("output"):
             aStarh1Cost = aStarh1Cost + int(lastLine[0])
             aStarh1Time = aStarh1Time + float(lastLine[1])
     # elif fnmatch.fnmatch(filename, 'astar-h2') and fnmatch.fnmatch(filename, 'solution'):
-    elif "astar-h1_solution" in filename:
+    elif "astar-h2_solution" in filename:
         if(getFirstLine(filename) == "no solution"):
             aStarh2NoSolution = aStarh2NoSolution + 1
         else:
@@ -148,10 +148,10 @@ writeInfoOnFile(file, "Total astar-h2 search path: ", "Average astar-h2 search p
 file.write("average & total number of no solution: \n\n")
 
 writeInfoOnFile(file, "Total number of no solution with ucs: ", "Average number of no solution with ucs: ", ucsNoSolution)
-writeInfoOnFile(file, "Total number of no solution with gbfs-h1: ", "Average number of no solution with gbfs-h1: ", gbfsh1Solution)
-writeInfoOnFile(file, "Total number of no solution with gbfs-h2: ", "Average number of no solution with gbfs-h2: ", gbfsh2Solution)
-writeInfoOnFile(file, "Total number of no solution with astar-h1: ", "Average number of no solution with astar-h1: ", aStarh1Solution)
-writeInfoOnFile(file, "Total number of no solution with astar-h2: ", "Average number of no solution with astar-h2: ", aStarh2Solution)
+writeInfoOnFile(file, "Total number of no solution with gbfs-h1: ", "Average number of no solution with gbfs-h1: ", gbfsh1NoSolution)
+writeInfoOnFile(file, "Total number of no solution with gbfs-h2: ", "Average number of no solution with gbfs-h2: ", gbfsh2NoSolution)
+writeInfoOnFile(file, "Total number of no solution with astar-h1: ", "Average number of no solution with astar-h1: ", aStarh2NoSolution)
+writeInfoOnFile(file, "Total number of no solution with astar-h2: ", "Average number of no solution with astar-h2: ", aStarh2NoSolution)
 
 # 3. average & total cost and execution time
 

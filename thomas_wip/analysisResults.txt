@@ -12,8 +12,8 @@ Average gbfs-h2 solution path: 21.08
 Total astar-h1 solution path: 530
 Average astar-h1 solution path: 10.6
 
-Total astar-h2 solution path: 0
-Average astar-h2 solution path: 0.0
+Total astar-h2 solution path: 600
+Average astar-h2 solution path: 12.0
 
 average & total length of the search paths: 
 
@@ -37,14 +37,14 @@ average & total number of no solution:
 Total number of no solution with ucs: 34
 Average number of no solution with ucs: 0.68
 
-Total number of no solution with gbfs-h1: 1010
-Average number of no solution with gbfs-h1: 20.2
+Total number of no solution with gbfs-h1: 0
+Average number of no solution with gbfs-h1: 0.0
 
-Total number of no solution with gbfs-h2: 1054
-Average number of no solution with gbfs-h2: 21.08
+Total number of no solution with gbfs-h2: 0
+Average number of no solution with gbfs-h2: 0.0
 
-Total number of no solution with astar-h1: 530
-Average number of no solution with astar-h1: 10.6
+Total number of no solution with astar-h1: 0
+Average number of no solution with astar-h1: 0.0
 
 Total number of no solution with astar-h2: 0
 Average number of no solution with astar-h2: 0.0
@@ -63,8 +63,8 @@ Average cost of gbfs-h2: 33.8
 Total cost of astar-h1: 642
 Average cost of astar-h1: 12.84
 
-Total cost of astar-h2: 0
-Average cost of astar-h2: 0.0
+Total cost of astar-h2: 737
+Average cost of astar-h2: 14.74
 
 average & total execution time: 
 
@@ -80,6 +80,6 @@ Average execution time of gbfs-h2: 0.5217830753326416
 Total execution time of astar-h1: 360.47782588005066
 Average execution time of astar-h1: 7.209556517601013
 
-Total execution time of astar-h2: 0
-Average execution time of astar-h2: 0.0
+Total execution time of astar-h2: 181.19879388809204
+Average execution time of astar-h2: 3.6239758777618407
 
