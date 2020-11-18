@@ -122,7 +122,10 @@ dictOfAlgoFindingTheLowestCostPath = {}
 
 def checkIfCostOfAlgoIsLowestCostPath(cost, puzzleNumber, dictOfLowestCostForPuzzles):
     lowestCost = dictOfLowestCostForPuzzles[puzzleNumber]
-    return lowestCost == cost
+    if lowestCost != "no solution":
+        return lowestCost == cost
+    else:
+        return False
 
 for filename in os.listdir("output"):
     # GBFS:
@@ -130,6 +133,7 @@ for filename in os.listdir("output"):
         gbfsh1Search = gbfsh1Search + getLineCount(filename)
     elif "gbfs-h2_search" in filename:
         gbfsh2Search = gbfsh2Search + getLineCount(filename)
+
     elif "gbfs-h1_solution" in filename:
         if(getFirstLine(filename) == "no solution"):
             gbfsh1NoSolution = gbfsh1NoSolution + 1
@@ -138,8 +142,14 @@ for filename in os.listdir("output"):
             lastLine = getLastLine(filename).split()
             gbfsh1Cost = gbfsh1Cost + int(lastLine[0])
             gbfsh1Time = gbfsh1Time + float(lastLine[1])
-            puzzleNumber = int(filename.split("_"))
-            if checkIfCostOfAlgoIsLowestCostPath(int(lastLine[0]), puzzleNumber, dictOfLowestCostForPuzzles)
+            puzzleNumber = int(filename.split("_")[0])
+            if checkIfCostOfAlgoIsLowestCostPath(int(lastLine[0]), puzzleNumber, dictOfLowestCostForPuzzles):
+                dictOfAlgoOptimalitySolutionPath["gbfs-h1"] = dictOfAlgoOptimalitySolutionPath["gbfs-h1"] + 1
+                if puzzleNumber in dictOfAlgoFindingTheLowestCostPath:
+                    dictOfAlgoFindingTheLowestCostPath[puzzleNumber].append("gbfs-h1")
+                else:
+                    dictOfAlgoFindingTheLowestCostPath[puzzleNumber] = []
+                    dictOfAlgoFindingTheLowestCostPath[puzzleNumber].append("gbfs-h1")
 
 
     elif "gbfs-h2_solution" in filename:
@@ -150,12 +160,19 @@ for filename in os.listdir("output"):
             lastLine = getLastLine(filename).split()
             gbfsh2Cost = gbfsh2Cost + int(lastLine[0])
             gbfsh2Time = gbfsh2Time + float(lastLine[1])
+            puzzleNumber = int(filename.split("_")[0])
+            if checkIfCostOfAlgoIsLowestCostPath(int(lastLine[0]), puzzleNumber, dictOfLowestCostForPuzzles):
+                dictOfAlgoOptimalitySolutionPath["gbfs-h2"] = dictOfAlgoOptimalitySolutionPath["gbfs-h2"] + 1
+                if puzzleNumber in dictOfAlgoFindingTheLowestCostPath:
+                    dictOfAlgoFindingTheLowestCostPath[puzzleNumber].append("gbfs-h2")
+                else:
+                    dictOfAlgoFindingTheLowestCostPath[puzzleNumber] = []
+                    dictOfAlgoFindingTheLowestCostPath[puzzleNumber].append("gbfs-h2")
     
     # A* star
-    # elif fnmatch.fnmatch(filename, 'astar-h1') and fnmatch.fnmatch(filename, 'search'):
     elif "astar-h1_search" in filename:
         aStarh1Search = aStarh1Search + getLineCount(filename)
-    # elif fnmatch.fnmatch(filename, 'astar-h2') and fnmatch.fnmatch(filename, 'search'):
+
     elif "astar-h2_search" in filename:
         aStarh2Search = aStarh2Search + getLineCount(filename)
     elif "astar-h1_solution" in filename:
@@ -166,7 +183,15 @@ for filename in os.listdir("output"):
             lastLine = getLastLine(filename).split()
             aStarh1Cost = aStarh1Cost + int(lastLine[0])
             aStarh1Time = aStarh1Time + float(lastLine[1])
-    # elif fnmatch.fnmatch(filename, 'astar-h2') and fnmatch.fnmatch(filename, 'solution'):
+            puzzleNumber = int(filename.split("_")[0])
+            if checkIfCostOfAlgoIsLowestCostPath(int(lastLine[0]), puzzleNumber, dictOfLowestCostForPuzzles):
+                dictOfAlgoOptimalitySolutionPath["astar-h1"] = dictOfAlgoOptimalitySolutionPath["astar-h1"] + 1
+                if puzzleNumber in dictOfAlgoFindingTheLowestCostPath:
+                    dictOfAlgoFindingTheLowestCostPath[puzzleNumber].append("astar-h1")
+                else:
+                    dictOfAlgoFindingTheLowestCostPath[puzzleNumber] = []
+                    dictOfAlgoFindingTheLowestCostPath[puzzleNumber].append("astar-h1")
+
     elif "astar-h2_solution" in filename:
         if(getFirstLine(filename) == "no solution"):
             aStarh2NoSolution = aStarh2NoSolution + 1
@@ -175,6 +200,15 @@ for filename in os.listdir("output"):
             lastLine = getLastLine(filename).split()
             aStarh2Cost = aStarh2Cost + int(lastLine[0])
             aStarh2Time = aStarh2Time + float(lastLine[1])
+            puzzleNumber = int(filename.split("_")[0])
+            if checkIfCostOfAlgoIsLowestCostPath(int(lastLine[0]), puzzleNumber, dictOfLowestCostForPuzzles):
+                dictOfAlgoOptimalitySolutionPath["astar-h2"] = dictOfAlgoOptimalitySolutionPath["astar-h2"] + 1
+                if puzzleNumber in dictOfAlgoFindingTheLowestCostPath:
+                    dictOfAlgoFindingTheLowestCostPath[puzzleNumber].append("astar-h2")
+                else:
+                    dictOfAlgoFindingTheLowestCostPath[puzzleNumber] = []
+                    dictOfAlgoFindingTheLowestCostPath[puzzleNumber].append("astar-h2")
+
 
     # elif fnmatch.fnmatch(filename, 'ucs') and fnmatch.fnmatch(filename, 'search'):
     elif "ucs_search" in filename:
@@ -187,8 +221,14 @@ for filename in os.listdir("output"):
             lastLine = getLastLine(filename).split()
             ucsCost = ucsCost + int(lastLine[0])
             ucsTime = ucsTime + float(lastLine[1])
-
-
+            puzzleNumber = int(filename.split("_")[0])
+            if checkIfCostOfAlgoIsLowestCostPath(int(lastLine[0]), puzzleNumber, dictOfLowestCostForPuzzles):
+                dictOfAlgoOptimalitySolutionPath["ucs"] = dictOfAlgoOptimalitySolutionPath["ucs"] + 1
+                if puzzleNumber in dictOfAlgoFindingTheLowestCostPath:
+                    dictOfAlgoFindingTheLowestCostPath[puzzleNumber].append("ucs")
+                else:
+                    dictOfAlgoFindingTheLowestCostPath[puzzleNumber] = []
+                    dictOfAlgoFindingTheLowestCostPath[puzzleNumber].append("ucs")
 
 file = open("analysisResults.txt", "w")
 
@@ -219,7 +259,7 @@ file.write("average & total number of no solution: \n\n")
 writeInfoOnFile(file, "Total number of no solution with ucs: ", "Average number of no solution with ucs: ", ucsNoSolution)
 writeInfoOnFile(file, "Total number of no solution with gbfs-h1: ", "Average number of no solution with gbfs-h1: ", gbfsh1NoSolution)
 writeInfoOnFile(file, "Total number of no solution with gbfs-h2: ", "Average number of no solution with gbfs-h2: ", gbfsh2NoSolution)
-writeInfoOnFile(file, "Total number of no solution with astar-h1: ", "Average number of no solution with astar-h1: ", aStarh2NoSolution)
+writeInfoOnFile(file, "Total number of no solution with astar-h1: ", "Average number of no solution with astar-h1: ", aStarh1NoSolution)
 writeInfoOnFile(file, "Total number of no solution with astar-h2: ", "Average number of no solution with astar-h2: ", aStarh2NoSolution)
 
 # 3. average & total cost and execution time
@@ -241,6 +281,20 @@ writeInfoOnFile(file, "Total execution time of astar-h1: ", "Average execution t
 writeInfoOnFile(file, "Total execution time of astar-h2: ", "Average execution time of astar-h2: ", aStarh2Time)
 
 # 4. optimality of the solution path
+file.write("optimality of the solution path: \n\n")
+for key, value in dictOfAlgoFindingTheLowestCostPath.items():
+    file.write("Puzzle " + str(key) + ": " )
+    for element in value:
+        if(element != value[-1]):
+            file.write(element + " -- ")
+        else:
+            file.write(element)
+    file.write("\n")
 
+file.write("\n\n")
+file.write("Summary of how many each alogrithm got the shortest path \n\n")
+for key, value in dictOfAlgoOptimalitySolutionPath.items():
+    file.write(key + ": " + str(value) + "\n")
+    
 
 file.close()
