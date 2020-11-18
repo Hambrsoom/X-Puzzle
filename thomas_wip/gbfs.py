@@ -1,4 +1,3 @@
-from pprint import pprint
 from bisect import insort 
 from successor import generateChildStates
 from solution_path import getSolutionPath
@@ -20,8 +19,6 @@ puzzleDimensions = {
 }
 
 def gbfs(puzzleNumber, puzzleArr, numRows, numColumns, heuristicType):
-    print("Running gbfs algo on the following puzzle:")
-    print(puzzleArr)
 
     puzzleDimensions["numRows"] = numRows
     puzzleDimensions["numColumns"] = numColumns
@@ -48,7 +45,6 @@ def gbfs(puzzleNumber, puzzleArr, numRows, numColumns, heuristicType):
 
     while not goalFound and time.time() <= time_end:
         nodeWeAreLookingAt = open.pop(0)
-        print(nodeWeAreLookingAt['currentState'])
         closed.insert(0, nodeWeAreLookingAt)
 
         goalFound = isGoal(nodeWeAreLookingAt['currentState'], puzzleDimensions)

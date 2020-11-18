@@ -1,4 +1,3 @@
-from pprint import pprint
 from bisect import insort 
 from successor import generateChildStates
 from solution_path import getSolutionPath
@@ -24,9 +23,7 @@ puzzleDimensions = {
 def uniform_cost(puzzleNumber, puzzleArr, numRows, numColumns):
 
     start_time = time.time()
-    time_end = start_time + 600
-
-    print("Running Uniform Cost algo on the following puzzle:")
+    time_end = start_time + 60
 
     puzzleDimensions["numRows"] = numRows
     puzzleDimensions["numColumns"] = numColumns
@@ -59,11 +56,9 @@ def uniform_cost(puzzleNumber, puzzleArr, numRows, numColumns):
     execution_time = time.time() - start_time
     
     if time.time() <= time_end:
-        print("< exec time")
         getSearchPath(closed, "ucs", puzzleNumber, True, "")
         getSolutionPath(goalNode, closed, "ucs", puzzleNumber, True, "", execution_time)
     else: 
-        print("no solution")
         getSearchPath(closed, "ucs", puzzleNumber, False, "")
         getSolutionPath(goalNode, closed, "ucs", puzzleNumber, False, "", execution_time)
 

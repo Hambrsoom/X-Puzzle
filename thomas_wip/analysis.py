@@ -126,7 +126,7 @@ file = open("analysisResults.txt", "w")
 # 1. average & total length of the solution and search paths
 
 # ucs solution path
-file.write(" average & total length of the solution paths \n\n")
+file.write("average & total length of the solution paths \n\n")
 
 writeInfoOnFile(file, "Total ucs solution path: ", "Average ucs solution path: ", ucsSolution)
 writeInfoOnFile(file, "Total gbfs-h1 solution path: ", "Average gbfs-h1 solution path: ", gbfsh1Solution)
@@ -170,7 +170,5 @@ writeInfoOnFile(file, "Total execution time of gbfs-h1: ", "Average execution ti
 writeInfoOnFile(file, "Total execution time of with gbfs-h2: ", "Average execution time of gbfs-h2: ", gbfsh2Time)
 writeInfoOnFile(file, "Total execution time of astar-h1: ", "Average execution time of astar-h1: ", aStarh1Time)
 writeInfoOnFile(file, "Total execution time of astar-h2: ", "Average execution time of astar-h2: ", aStarh2Time)
-
-# 4.  #TODO: NO CLUE :$ 
 
 file.close()

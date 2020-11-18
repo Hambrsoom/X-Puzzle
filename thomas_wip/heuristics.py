@@ -22,65 +22,23 @@ def manhattan(puzzleArray, nRows, nColumns, firstSolutionList, secondSolutionLis
     chunksProperListFirstSolution = np.array(firstSolutionList).reshape(nColumns, nRows)
     chunksProperListSecondSolution = np.array(secondSolutionList).reshape(nColumns, nRows)
     chunksPuzzleList = np.array(puzzleArray).reshape(nColumns, nRows)
-    firstTotalCost = 0
-    secondTotalCost = 0
+    firstTotalDistance = 0
+    secondTotalDistance = 0
 
-    for row in range(len(chunksPuzzleList)):
-        for column in range(len(chunksPuzzleList[row])):
-            properLocationXFirstSolution, porperLocationYFirstSolution = properLocationOfNode(chunksPuzzleList[row][column], chunksProperListFirstSolution)
-            properLocationXSecondSolution, porperLocationYSecondSolution = properLocationOfNode(chunksPuzzleList[row][column], chunksProperListSecondSolution)
-            firstTotalCost = firstTotalCost + calculateCost(properLocationXFirstSolution, porperLocationYFirstSolution, row, column, nRows, nColumns)
-            secondTotalCost = secondTotalCost + calculateCost(properLocationXSecondSolution, porperLocationYSecondSolution, row, column, nRows, nColumns)
-    return min(firstTotalCost, secondTotalCost)
+    for y in range(len(chunksPuzzleList)):
+        for x in range(len(chunksPuzzleList[y])):
+            properLocationYFirstSolution, properLocationXFirstSolution = properLocationOfNode(chunksPuzzleList[y][x], chunksProperListFirstSolution)
+            properLocationYSecondSolution, properLocationXSecondSolution = properLocationOfNode(chunksPuzzleList[y][x], chunksProperListSecondSolution)
+            firstTotalDistance = firstTotalDistance + calculateDistance(properLocationXFirstSolution, properLocationYFirstSolution, y, x)
+            secondTotalDistance = secondTotalDistance + calculateDistance(properLocationXSecondSolution, properLocationYSecondSolution, y, x)
+    return min(firstTotalDistance, secondTotalDistance)
 
 def properLocationOfNode(node, list):
-    for i in range(len(list)):
-        for j in range(len(list[i])):
-            if list[i][j] == int(node):
-                return i, j
+    for y in range(len(list)):
+        for x in range(len(list[y])):
+            if list[y][x] == int(node):
+                return y, x
 
-def calculateCost(properX, properY, realX, realY, nRows, nColumns):
-
-    # Vertical and horizontal wrapping
-    # if realX == properX and ((realY == 0 and properY == nColumns-1) or (realY == nColumns-1 and properY == 0)):
-    #     return 1
-    # if realY == properY and ((realX == 0 and properX == nRows-1)) or (realX == nRows-1 and properX == 0):
-    #     return 1
-    
-
-    # # Diagonal
-    # if abs(realX - properX) == 1 and abs(realY - properY) == 1:
-    #     return 1
-
-    # # opposite Diagnoals move
-    # if (realX == 0 and realY == 0) and (properX == nRows-1 and properY ==  nColumns-1):
-    #     return 1
-    # if (realX == nRows-1 and realY ==  nColumns-1) and (properX == 0 and properY == 0):
-    #     return 1
-    # if (realX == 0 and realY == nColumns-1) and (properX == nRows-1 and properY == 0):
-    #     return 1
-    # if (realX == nRows-1 and realY == 0) and (properX == 0 and properY == nColumns-1):
-    #     return 1
-    if (realX == 0 and realY == 0) or (realX == 0 and realY == nRows-1) or (realX == nColumns-1 and realY == nRows-1) or (realX == nColumns-1 and realY == 0):
-        return 1
+def calculateDistance(properX, properY, realX, realY):
     return abs(properX-realX) + abs(properY - realY)
 
-#sumOfPermutationInversions
-def h3(puzzleArray, xDim, yDim, firstSolutionList, secondSolutionList):
-    arrCopy = puzzleArray.copy();
-    indexOf0 = arrCopy.index('0');
-    arrCopy[indexOf0] = len(arrCopy); #change 0 to length of puzzle in order to allow Permutation.inversions()
-    arrCopy = np.hstack((0,arrCopy));
-    checkGoal1 = Permutation(arrCopy).inversions();
-    arrCopy = arrCopy[1:];
-    splitArr = np.array_split(arrCopy, yDim);
-    arrVertical = [0] * len(arrCopy);
-    splitCount = 0;
-    for arr in splitArr:
-        count = splitCount
-        for i in arr:
-            arrVertical[count] = i;
-            count = count + yDim;
-        splitCount = splitCount + 1;
-    arrVertical = np.hstack((0,arrVertical));
-    return min(checkGoal1, Permutation(arrVertical).inversions());

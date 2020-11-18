@@ -1,4 +1,3 @@
-from pprint import pprint
 from helper_methods import listToString
 
 def getSearchPath(closedArr, algoType, puzzleNumber, foundSolution, heuristicFunction):    
