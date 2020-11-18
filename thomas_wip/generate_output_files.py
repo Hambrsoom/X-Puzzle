@@ -7,7 +7,7 @@ def generateSolutionAndSearchFiles(puzzles, nRows, nColumns):
         #uniform_cost(index, puzzles[index], nRows, nColumns)
 
         gbfs(index, puzzles[index], nRows, nColumns, "h1")
-        gbfs(index, puzzles[index], nRows, nColumns, "h2")
+        #gbfs(index, puzzles[index], nRows, nColumns, "h2")
 
         astar(index, puzzles[index], nRows, nColumns, "h1")
-        astar(index, puzzles[index], nRows, nColumns, "h2")
+        #astar(index, puzzles[index], nRows, nColumns, "h2")
