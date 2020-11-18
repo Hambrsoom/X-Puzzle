@@ -47,24 +47,41 @@ def generateChildStates(puzzleArr, gn, puzzleDimensions):
     #wrapping move
     if isTopEdge(zeroTileIndex, puzzleArr, puzzleDimensions) and isLeftEdge(zeroTileIndex, puzzleArr, puzzleDimensions):
         move, movedTile = generateWrapLeftEdge(zeroTileIndex, puzzleArr.copy(), puzzleDimensions)
+        move2, movedTile2 = generateWrapTopEdge(zeroTileIndex, puzzleArr.copy(), puzzleDimensions)
         children.append({
             "currentState": move,
             "parent": puzzleArr,
             "movedTile": movedTile,
+            "cost": 2,
+            "gn": gn+2
+        })
+        children.append({
+            "currentState": move2,
+            "parent": puzzleArr,
+            "movedTile": movedTile2,
             "cost": 2,
             "gn": gn+2
         })
     if isBottomEdge(zeroTileIndex, puzzleArr, puzzleDimensions) and isLeftEdge(zeroTileIndex, puzzleArr, puzzleDimensions):
         move, movedTile = generateWrapLeftEdge(zeroTileIndex, puzzleArr.copy(), puzzleDimensions)
+        move2, movedTile2 = generateWrapBottomEdge(zeroTileIndex, puzzleArr.copy(), puzzleDimensions)
         children.append({
             "currentState": move,
             "parent": puzzleArr,
             "movedTile": movedTile,
+            "cost": 2,
+            "gn": gn+2
+        })
+        children.append({
+            "currentState": move2,
+            "parent": puzzleArr,
+            "movedTile": movedTile2,
             "cost": 2,
             "gn": gn+2
         })
     if isTopEdge(zeroTileIndex, puzzleArr, puzzleDimensions) and isRightEdge(zeroTileIndex, puzzleArr, puzzleDimensions):
         move, movedTile = generateWrapRightEdge(zeroTileIndex, puzzleArr.copy(), puzzleDimensions)
+        move2, movedTile2 = generateWrapTopEdge(zeroTileIndex, puzzleArr.copy(), puzzleDimensions)
         children.append({
             "currentState": move,
             "parent": puzzleArr,
@@ -72,12 +89,27 @@ def generateChildStates(puzzleArr, gn, puzzleDimensions):
             "cost": 2,
             "gn": gn+2
         })
+        children.append({
+            "currentState": move2,
+            "parent": puzzleArr,
+            "movedTile": movedTile2,
+            "cost": 2,
+            "gn": gn+2
+        })
     if isBottomEdge(zeroTileIndex, puzzleArr, puzzleDimensions) and isRightEdge(zeroTileIndex, puzzleArr, puzzleDimensions):
         move, movedTile = generateWrapRightEdge(zeroTileIndex, puzzleArr.copy(), puzzleDimensions)
+        move2, movedTile2 = generateWrapBottomEdge(zeroTileIndex, puzzleArr.copy(), puzzleDimensions)
         children.append({
             "currentState": move,
             "parent": puzzleArr,
             "movedTile": movedTile,
+            "cost": 2,
+            "gn": gn+2
+        })
+        children.append({
+            "currentState": move2,
+            "parent": puzzleArr,
+            "movedTile": movedTile2,
             "cost": 2,
             "gn": gn+2
         })
@@ -218,6 +250,21 @@ def generateWrapLeftEdge(index, puzzleArr, puzzleDimensions): #when zero on left
     newIndex = index + n - 1
     puzzleArr[newIndex], puzzleArr[index] = puzzleArr[index], puzzleArr[newIndex]
     return puzzleArr, puzzleArr[index]
+
+def generateWrapBottomEdge(index, puzzleArr, puzzleDimensions): #when zero on bottom edge
+    n = puzzleDimensions["numColumns"]
+    r = puzzleDimensions["numRows"]
+    newIndex = index - (r-1) * n
+    puzzleArr[newIndex], puzzleArr[index] = puzzleArr[index], puzzleArr[newIndex]
+    return puzzleArr, puzzleArr[index]
+
+def generateWrapTopEdge(index, puzzleArr, puzzleDimensions): #when zero on top edge
+    n = puzzleDimensions["numColumns"]
+    r = puzzleDimensions["numRows"]
+    newIndex = index + (r-1) * n
+    puzzleArr[newIndex], puzzleArr[index] = puzzleArr[index], puzzleArr[newIndex]
+    return puzzleArr, puzzleArr[index]
+
 
 def generateMoveTop(index, puzzleArr, puzzleDimensions):
     n = puzzleDimensions["numColumns"]
