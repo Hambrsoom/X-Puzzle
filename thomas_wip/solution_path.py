@@ -1,6 +1,7 @@
 from pprint import pprint
 from helper_methods import listToString
 
+# get the solution path and generate the proper txt file for them.
 def getSolutionPath(goalNode, closedArr, algoType, puzzleNumber, foundSolution, heuristicFunction, executionTime):
     if heuristicFunction == "":
         fileName = "output/" + str(puzzleNumber) + "_" + algoType + "_solution" +".txt"

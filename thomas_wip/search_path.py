@@ -1,6 +1,7 @@
 from pprint import pprint
 from helper_methods import listToString
 
+# get the search path and generate the proper output file for it
 def getSearchPath(closedArr, algoType, puzzleNumber, foundSolution, heuristicFunction):    
     if heuristicFunction == "":
         fileName = "output/" + str(puzzleNumber) + "_" + algoType + "_search" +".txt"

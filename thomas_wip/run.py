@@ -21,15 +21,17 @@ if args.filename is not None:
     filePath = args.filename
 
 # generate random 50 puzzles of the dimenstion 2*4:
-#generateFileOfFiftyPuzzles(2,4, 50)
+# generateFileOfFiftyPuzzles(2, 4, 50)
 
 # import puzzles
 puzzles = importPuzzlesFromFile(filePath)
+puzzleNumber = 0
 
-generateSolutionAndSearchFiles(puzzles, 2, 4)
-# if args.algo == 'gbfs':
-#     gbfs(puzzleNumber, puzzles[puzzleNumber], 2, 4)
-# if args.algo == 'astar':
-#     astar(0, puzzles[0], 2, 4, "h2")
-# if args.algo == 'ucs':
-#     uniform_cost(0, puzzles[0], 2, 4)
+if args.algo == 'gbfs':
+    gbfs(puzzleNumber, puzzles[puzzleNumber], 2, 4)
+if args.algo == 'astar':
+    astar(puzzleNumber, puzzles[0], 2, 4, "h2")
+if args.algo == 'ucs':
+    uniform_cost(puzzleNumber, puzzles[0], 2, 4)
+if args.algo == 'all':
+    generateSolutionAndSearchFiles(puzzles, 2, 4)

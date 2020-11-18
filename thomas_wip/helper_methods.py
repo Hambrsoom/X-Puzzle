@@ -1,10 +1,7 @@
-from heuristics import hammingDistance, manhattan, h3
-# h0
-# h1 -> Hamming
-# h2 -> Manhattan
-# h3 -> sumOfPermutationInversions
+from heuristics import hammingDistance, manhattan
 
-
+# Remove from the children list the nodes which already exist in the closed list
+# Then return the new children list
 def removeStatesWeHaveAlreadyVisitedFromChildren(children, closed):
     cleanChildren = children.copy()
     for child in cleanChildren:
@@ -15,6 +12,9 @@ def removeStatesWeHaveAlreadyVisitedFromChildren(children, closed):
 
     return children
 
+# Add the childrent to the open list, make sure that if the child already exist in
+# the open list, we check if the new child has a lower or higher cost. if the child
+# has a lower case, then we swap it with the node that exists in the open list.
 def addChildrenToOpenList(children, open):
     if len(open) > 0 :
         for child in children:
@@ -33,7 +33,6 @@ def addChildrenToOpenList(children, open):
         
     return open;
 
-
 def evaluateHeuristicOnChildren(children, puzzleDimensions, firstSolutionList, secondSolutionList, heuristicType):
     for child in children:
         if heuristicType == "h1":
@@ -43,15 +42,21 @@ def evaluateHeuristicOnChildren(children, puzzleDimensions, firstSolutionList, s
         elif heuristicType == "h3":
             child["hn"] = h3(child['currentState'], puzzleDimensions["numColumns"], puzzleDimensions["numRows"], firstSolutionList, secondSolutionList)
 
-
+# Check if the puzzles has achieved one of the proper goals
 def isGoal(puzzleArr, puzzleDimensions):
     return increasingHorizontallyWithBottomRightCorner0(puzzleArr) or increasingVerticallyWithBottomRightCorner0(puzzleArr, puzzleDimensions)
 
+# The method will check if the puzzle has reached this state:
+# [[1 2 3 4]
+#  [5 6 7 0]]
 def increasingHorizontallyWithBottomRightCorner0(puzzleArr):
     arrCopy = puzzleArr.copy()
     lastIsZero = arrCopy.pop() == '0'
     return lastIsZero and all(int(arrCopy[i]) <= int(arrCopy[i+1]) for i in range(len(arrCopy)-1)) #-1 since pop
 
+# The method will check if the puzzle has reached this state:
+# [[1 2 3 4]
+#  [5 6 7 0]]
 def increasingVerticallyWithBottomRightCorner0(puzzleArr, puzzleDimensions):
     arrCopy = puzzleArr.copy()
     lastIsZero = arrCopy.pop() == '0'

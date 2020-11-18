@@ -1,19 +1,9 @@
-from pprint import pprint
 from bisect import insort 
 from successor import generateChildStates
 from solution_path import getSolutionPath
 from helper_methods import *
 from search_path import getSearchPath
 import time
-
-
-
-# sampleStateSpace = {
-#     "currentState": [1,2,3,4,5,6,7,0],
-#     "parent": [1,2,3,5,4,6,7,0],
-#     "gn": 2,
-#     "hn": 4
-# }
 
 #file variable
 puzzleDimensions = {
@@ -45,19 +35,28 @@ def uniform_cost(puzzleNumber, puzzleArr, numRows, numColumns):
     goalNode = None   
     
     while not goalFound and time.time() <= time_end:
+        
+        # get the first node from the sorted open list 
         nodeWeAreLookingAt = open.pop(0)
         closed.insert(0, nodeWeAreLookingAt)
         goalFound = isGoal(nodeWeAreLookingAt['currentState'], puzzleDimensions)
         if goalFound: goalNode = nodeWeAreLookingAt
 
-        #get children, add to open list
+        # get children, add to open list
         children = generateChildStates(nodeWeAreLookingAt["currentState"], nodeWeAreLookingAt["gn"], puzzleDimensions)
+
+        # remove the children already exist in the close list from the children list.
         children = removeStatesWeHaveAlreadyVisitedFromChildren(children, closed)
+
+        # add the children to the open list
         open = addChildrenToOpenList(children, open)
+
+        # sort the open list according to the cost
         open = sorted(open, key = lambda k: k['gn'])
 
     execution_time = time.time() - start_time
     
+    # The type of the solutiona and search files to generate if they pass 60 seconds or not
     if time.time() <= time_end:
         print("< exec time")
         getSearchPath(closed, "ucs", puzzleNumber, True, "")

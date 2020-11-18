@@ -1,4 +1,6 @@
 
+# generating the next moves (by anticipating the possible moves) and then return a list of children
+# which can be considered as next step to reach to the goal state.
 def generateChildStates(puzzleArr, gn, puzzleDimensions):
     children = []
 

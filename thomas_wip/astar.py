@@ -1,4 +1,3 @@
-from pprint import pprint
 from bisect import insort 
 from successor import generateChildStates
 from solution_path import getSolutionPath
@@ -64,11 +63,12 @@ def astar(puzzleNumber, puzzleArr, numRows, numColumns, heuristicType):
         getSearchPath(closed, "astar", puzzleNumber, False, heuristicType)
         getSolutionPath(goalNode, closed, "astar", puzzleNumber, False, heuristicType, execution_time)
     
-
+# Calculating fn which is the sum of hn + gn
 def evaluateStarFunctionOnChildren(children):
     for child in children:
         child["fn"] = child["hn"] + child["gn"]
 
+# To confirm the admissibility of astar by checking 
 def admissibilityUpdateOpenList(children, open, closed):
     for child in children:
         isInOpenOrClosed = 0
