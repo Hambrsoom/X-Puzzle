@@ -1,4 +1,3 @@
-from pprint import pprint
 from helper_methods import listToString
 
 # get the solution path and generate the proper txt file for them.
@@ -23,13 +22,6 @@ def getSolutionPath(goalNode, closedArr, algoType, puzzleNumber, foundSolution, 
             parent = getNodeFromState(parentState, closedArr)
 
         solutionPath.reverse()
-        pprint(solutionPath)
-        print('cost of solution:')
-        pprint(solutionPath[-1]['gn']) 
-        print('count of edges of solution:')
-        pprint(len(solutionPath))
-        print('len of search path')
-        pprint(len(closedArr))
 
         for node in solutionPath:
             file.write(str(node["movedTile"]) + " " + str(node["cost"]) + " " + listToString(node["currentState"]) + "\n")

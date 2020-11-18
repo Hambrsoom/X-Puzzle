@@ -1,4 +1,3 @@
-from pprint import pprint
 from helper_methods import listToString
 
 # get the search path and generate the proper output file for it

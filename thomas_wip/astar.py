@@ -5,6 +5,13 @@ from search_path import getSearchPath
 from helper_methods import *
 import time
 
+# sampleStateSpace = {
+#     "currentState": [1,2,3,4,5,6,7,0],
+#     "parent": [1,2,3,5,4,6,7,0],
+#     "gn": 2,
+#     "hn": 4
+# }
+
 #file variable
 puzzleDimensions = {
     "numRows": 0,
@@ -12,8 +19,6 @@ puzzleDimensions = {
 }
 
 def astar(puzzleNumber, puzzleArr, numRows, numColumns, heuristicType):
-    print("Running A* algo on the following puzzle:")
-
     puzzleDimensions["numRows"] = numRows
     puzzleDimensions["numColumns"] = numColumns
 

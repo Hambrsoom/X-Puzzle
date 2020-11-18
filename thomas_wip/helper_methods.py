@@ -1,4 +1,11 @@
 from heuristics import hammingDistance, manhattan
+<<<<<<< HEAD
+=======
+# h1 -> Hamming
+# h2 -> Manhattan
+
+
+>>>>>>> b7060d3fd10b5a3248924311eb2a305683a851b9
 
 # Remove from the children list the nodes which already exist in the closed list
 # Then return the new children list
@@ -39,8 +46,6 @@ def evaluateHeuristicOnChildren(children, puzzleDimensions, firstSolutionList, s
             child["hn"] = hammingDistance(child['currentState'], puzzleDimensions["numColumns"], puzzleDimensions["numRows"], firstSolutionList, secondSolutionList)
         elif heuristicType == "h2":
             child["hn"] = manhattan(child['currentState'], puzzleDimensions["numColumns"], puzzleDimensions["numRows"], firstSolutionList, secondSolutionList)
-        elif heuristicType == "h3":
-            child["hn"] = h3(child['currentState'], puzzleDimensions["numColumns"], puzzleDimensions["numRows"], firstSolutionList, secondSolutionList)
 
 # Check if the puzzles has achieved one of the proper goals
 def isGoal(puzzleArr, puzzleDimensions):

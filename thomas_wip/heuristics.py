@@ -35,6 +35,7 @@ def manhattan(puzzleArray, nRows, nColumns, firstSolutionList, secondSolutionLis
 
     for y in range(len(chunksPuzzleList)):
         for x in range(len(chunksPuzzleList[y])):
+<<<<<<< HEAD
             # Finding the proper location of each x and y according to solution one.
             properLocationYFirstSolution, properLocationXFirstSolution = properLocationOfNode(chunksPuzzleList[y][x], chunksProperListFirstSolution)
             
@@ -42,19 +43,29 @@ def manhattan(puzzleArray, nRows, nColumns, firstSolutionList, secondSolutionLis
             properLocationYSecondSolution, properLocationXSecondSolution = properLocationOfNode(chunksPuzzleList[y][x], chunksProperListSecondSolution)
             
             # Calculating the total distance of moving the elements to their proper place according to solution one & solution two
+=======
+            properLocationYFirstSolution, properLocationXFirstSolution = properLocationOfNode(chunksPuzzleList[y][x], chunksProperListFirstSolution)
+            properLocationYSecondSolution, properLocationXSecondSolution = properLocationOfNode(chunksPuzzleList[y][x], chunksProperListSecondSolution)
+>>>>>>> b7060d3fd10b5a3248924311eb2a305683a851b9
             firstTotalDistance = firstTotalDistance + calculateDistance(properLocationXFirstSolution, properLocationYFirstSolution, y, x)
             secondTotalDistance = secondTotalDistance + calculateDistance(properLocationXSecondSolution, properLocationYSecondSolution, y, x)
     return min(firstTotalDistance, secondTotalDistance)
 
+<<<<<<< HEAD
 # find the location of a node in a list.
+=======
+>>>>>>> b7060d3fd10b5a3248924311eb2a305683a851b9
 def properLocationOfNode(node, list):
     for y in range(len(list)):
         for x in range(len(list[y])):
             if list[y][x] == int(node):
                 return y, x
 
+<<<<<<< HEAD
 
 # Calucate the distance on both x and y access separately and then take their sum
+=======
+>>>>>>> b7060d3fd10b5a3248924311eb2a305683a851b9
 def calculateDistance(properX, properY, realX, realY):
     return abs(properX-realX) + abs(properY - realY)
 
