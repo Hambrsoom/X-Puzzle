@@ -1,13 +1,14 @@
 # imports
 from argparse import ArgumentParser
-from importPuzzles import importPuzzlesFromFile
-from heuristics import h0
+from importPuzzles import *
 from astar import astar
 from gbfs import gbfs
+from helper_methods import generateSecondSolutionList
 from uniform_cost import uniform_cost
+from generate_output_files import generateSolutionAndSearchFiles
 
 # global variables
-filePath = "samplePuzzles.txt"
+filePath = "puzzles.txt"
 
 # argument parser with file argument
 parser = ArgumentParser()
@@ -19,12 +20,18 @@ args = parser.parse_args()
 if args.filename is not None:
     filePath = args.filename
 
+# generate random 50 puzzles of the dimenstion 2*4:
+# generateFileOfFiftyPuzzles(2, 4, 50)
+
 # import puzzles
 puzzles = importPuzzlesFromFile(filePath)
+puzzleNumber = 0
 
 if args.algo == 'gbfs':
-    gbfs(puzzles[4], 2, 4)
+    gbfs(puzzleNumber, puzzles[puzzleNumber], 2, 4)
 if args.algo == 'astar':
-    astar(puzzles[4], 2, 4)
-if args.algo == 'uc':
-    uniform_cost(puzzles[4], 2, 4)
+    astar(puzzleNumber, puzzles[0], 2, 4, "h2")
+if args.algo == 'ucs':
+    uniform_cost(puzzleNumber, puzzles[0], 2, 4)
+if args.algo == 'all':
+    generateSolutionAndSearchFiles(puzzles, 2, 4)
