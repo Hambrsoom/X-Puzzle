@@ -26,11 +26,14 @@ if args.filename is not None:
 # import puzzles
 puzzles = importPuzzlesFromFile(filePath)
 puzzleNumber = 0
+print(puzzles[0])
+puzzle = ['2','4','6','1','3','5','7','8','0']
 
 if args.algo == 'gbfs':
-    gbfs(puzzleNumber, puzzles[puzzleNumber], 2, 4)
+    gbfs(55, puzzle, 3, 3, "h1")
+    astar(55, puzzle, 3, 3, "h1")
 if args.algo == 'astar':
-    astar(puzzleNumber, puzzles[0], 2, 4, "h2")
+    astar(55, puzzle, 2, 4, "h2")
 if args.algo == 'ucs':
     uniform_cost(puzzleNumber, puzzles[0], 2, 4)
 if args.algo == 'all':

@@ -292,7 +292,7 @@ for key, value in dictOfAlgoFindingTheLowestCostPath.items():
     file.write("\n")
 
 file.write("\n\n")
-file.write("Summary of how many each alogrithm got the shortest path \n\n")
+file.write("Summary of how many each alogrithm got the lowest cost \n\n")
 for key, value in dictOfAlgoOptimalitySolutionPath.items():
     file.write(key + ": " + str(value) + "\n")
     

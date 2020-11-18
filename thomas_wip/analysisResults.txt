@@ -6,14 +6,14 @@ Average ucs solution path: 3.1
 Total gbfs-h1 solution path: 1010
 Average gbfs-h1 solution path: 20.2
 
-Total gbfs-h2 solution path: 938
-Average gbfs-h2 solution path: 18.76
+Total gbfs-h2 solution path: 1210
+Average gbfs-h2 solution path: 24.2
 
-Total astar-h1 solution path: 518
-Average astar-h1 solution path: 10.36
+Total astar-h1 solution path: 503
+Average astar-h1 solution path: 10.06
 
-Total astar-h2 solution path: 294
-Average astar-h2 solution path: 5.88
+Total astar-h2 solution path: 221
+Average astar-h2 solution path: 4.42
 
 average & total length of the search paths: 
 
@@ -23,14 +23,14 @@ Average ucs search path: 1680.48
 Total gbfs-h1 search path: 11792
 Average gbfs-h1 search path: 235.84
 
-Total gbfs-h2 search path: 153366
-Average gbfs-h2 search path: 3067.32
+Total gbfs-h2 search path: 51092
+Average gbfs-h2 search path: 1021.84
 
-Total astar-h1 search path: 74963
-Average astar-h1 search path: 1499.26
+Total astar-h1 search path: 68120
+Average astar-h1 search path: 1362.4
 
-Total astar-h2 search path: 82011
-Average astar-h2 search path: 1640.22
+Total astar-h2 search path: 68891
+Average astar-h2 search path: 1377.82
 
 average & total number of no solution: 
 
@@ -43,11 +43,11 @@ Average number of no solution with gbfs-h1: 0.0
 Total number of no solution with gbfs-h2: 0
 Average number of no solution with gbfs-h2: 0.0
 
-Total number of no solution with astar-h1: 5
-Average number of no solution with astar-h1: 0.1
+Total number of no solution with astar-h1: 6
+Average number of no solution with astar-h1: 0.12
 
-Total number of no solution with astar-h2: 22
-Average number of no solution with astar-h2: 0.44
+Total number of no solution with astar-h2: 28
+Average number of no solution with astar-h2: 0.56
 
 average & total cost: 
 
@@ -57,39 +57,38 @@ Average cost of ucs: 3.78
 Total cost of gbfs-h1: 1513
 Average cost of gbfs-h1: 30.26
 
-Total cost of with gbfs-h2: 1244
-Average cost of gbfs-h2: 24.88
+Total cost of with gbfs-h2: 1557
+Average cost of gbfs-h2: 31.14
 
-Total cost of astar-h1: 624
-Average cost of astar-h1: 12.48
+Total cost of astar-h1: 607
+Average cost of astar-h1: 12.14
 
-Total cost of astar-h2: 352
-Average cost of astar-h2: 7.04
+Total cost of astar-h2: 268
+Average cost of astar-h2: 5.36
 
 average & total execution time: 
 
 Total execution time of ucs: 406.80270075798035
 Average execution time of ucs: 8.136054015159607
 
-Total execution time of gbfs-h1: 4.000468730926514
-Average execution time of gbfs-h1: 0.08000937461853028
+Total execution time of gbfs-h1: 3.1830978393554688
+Average execution time of gbfs-h1: 0.06366195678710937
 
-Total execution time of with gbfs-h2: 390.3615765571594
-Average execution time of gbfs-h2: 7.807231531143189
+Total execution time of with gbfs-h2: 42.253592014312744
+Average execution time of gbfs-h2: 0.8450718402862549
 
-Total execution time of astar-h1: 297.7324929237366
-Average execution time of astar-h1: 5.954649858474731
+Total execution time of astar-h1: 245.89717626571655
+Average execution time of astar-h1: 4.917943525314331
 
-Total execution time of astar-h2: 316.7448103427887
-Average execution time of astar-h2: 6.334896206855774
+Total execution time of astar-h2: 252.13289141654968
+Average execution time of astar-h2: 5.042657828330993
 
 optimality of the solution path: 
 
 Puzzle 0: astar-h1
 Puzzle 10: astar-h1 -- astar-h2 -- ucs
-Puzzle 11: astar-h1 -- astar-h2
+Puzzle 11: astar-h1
 Puzzle 12: astar-h1 -- astar-h2 -- ucs
-Puzzle 14: astar-h1
 Puzzle 15: astar-h1
 Puzzle 16: astar-h1 -- astar-h2 -- gbfs-h1 -- ucs
 Puzzle 17: astar-h1 -- astar-h2 -- ucs
@@ -98,10 +97,10 @@ Puzzle 19: astar-h1
 Puzzle 1: astar-h1 -- astar-h2 -- ucs
 Puzzle 20: astar-h1 -- astar-h2
 Puzzle 21: astar-h1 -- astar-h2 -- ucs
-Puzzle 23: astar-h1 -- astar-h2
+Puzzle 23: astar-h1
 Puzzle 24: astar-h1
 Puzzle 25: astar-h1
-Puzzle 27: astar-h1 -- astar-h2
+Puzzle 27: astar-h1
 Puzzle 28: astar-h1 -- astar-h2
 Puzzle 29: astar-h1
 Puzzle 2: astar-h1 -- astar-h2 -- ucs
@@ -115,27 +114,27 @@ Puzzle 36: astar-h1
 Puzzle 37: astar-h1
 Puzzle 38: astar-h1 -- astar-h2 -- ucs
 Puzzle 39: astar-h1
-Puzzle 3: astar-h1 -- astar-h2 -- gbfs-h1 -- gbfs-h2
+Puzzle 3: astar-h1 -- gbfs-h1
 Puzzle 41: astar-h1
 Puzzle 42: astar-h1
-Puzzle 43: astar-h1 -- astar-h2 -- gbfs-h2
+Puzzle 43: astar-h1 -- astar-h2
 Puzzle 44: astar-h1 -- astar-h2 -- ucs
 Puzzle 45: astar-h1
 Puzzle 46: astar-h1 -- astar-h2
-Puzzle 47: astar-h1 -- astar-h2
+Puzzle 47: astar-h1
 Puzzle 48: astar-h1
 Puzzle 49: astar-h1 -- astar-h2
 Puzzle 5: astar-h1 -- astar-h2 -- ucs
 Puzzle 6: astar-h1 -- astar-h2
 Puzzle 7: astar-h1
 Puzzle 8: astar-h1 -- astar-h2 -- ucs
-Puzzle 9: astar-h1 -- astar-h2
+Puzzle 9: astar-h1
 
 
 Summary of how many each alogrithm got the shortest path 
 
 gbfs-h1: 3
-gbfs-h2: 2
-astar-h1: 45
-astar-h2: 28
+gbfs-h2: 0
+astar-h1: 44
+astar-h2: 22
 ucs: 16
