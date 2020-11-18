@@ -1,5 +1,3 @@
-from sympy.combinatorics.partitions import Partition
-from sympy.combinatorics.permutations import Permutation
 import numpy as np
 
 # Hamming distance
@@ -22,6 +20,26 @@ def hammingDistance(puzzleArray, xDim, yDim, firstSolutionList, secondSolutionLi
         if int(puzzleArray[i]) != int(secondSolutionList[i]):
             hn2 = hn2 + 1 
     return min(hn1, hn2) 
+
+def isDecreasing(puzzleArray, nRows, nColumns, firstSolutionList, secondSolutionList):
+    arrCopy = puzzleArray.copy();
+    
+    # convert to int
+    for idx, val in enumerate(arrCopy): arrCopy[idx] = int(arrCopy[idx])
+
+    indexOf0 = arrCopy.index(0);
+    arrCopy[indexOf0] = len(arrCopy);
+
+    # Reshaping the solutions the puzzle to be like a 2d array.
+    chunksPuzzleList = np.array(arrCopy).reshape(nColumns, nRows)
+    seenDecrease = 0
+
+    for y in range(len(chunksPuzzleList)):
+        rowSorted = np.all(np.diff(chunksPuzzleList[y]) >= 0)
+        if not rowSorted: 
+            seenDecrease = seenDecrease + 1
+    
+    return seenDecrease
 
 # Manhattan
 def manhattan(puzzleArray, nRows, nColumns, firstSolutionList, secondSolutionList):
