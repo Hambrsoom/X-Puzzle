@@ -104,7 +104,6 @@ def generateSecondSolutionList(nRows, nColumns):
                 tempList.append(0)
             else:
                 tempList.append( tempList[j-1] + nRows )
-                print(tempList)
         properList = properList + tempList
         tempList = []
         firstValue = firstValue + 1 

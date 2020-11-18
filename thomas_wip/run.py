@@ -30,6 +30,6 @@ generateSolutionAndSearchFiles(puzzles, 2, 4)
 # if args.algo == 'gbfs':
 #     gbfs(puzzleNumber, puzzles[puzzleNumber], 2, 4)
 # if args.algo == 'astar':
-#     astar(0, puzzles[0], 2, 4, "h1")
+#     astar(0, puzzles[0], 2, 4, "h2")
 # if args.algo == 'ucs':
 #     uniform_cost(0, puzzles[0], 2, 4)

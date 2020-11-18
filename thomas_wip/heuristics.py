@@ -19,19 +19,22 @@ def hammingDistance(puzzleArray, xDim, yDim, firstSolutionList, secondSolutionLi
 
 # Manhattan
 def manhattan(puzzleArray, nRows, nColumns, firstSolutionList, secondSolutionList):
-    chunksProperListFirstSolution = [firstSolutionList[x:x+nColumns] for x in range(0, len(firstSolutionList), nColumns)]
-    chunksProperListSecondSolution = [secondSolutionList[x:x+nColumns] for x in range(0, len(secondSolutionList), nColumns)]
+    chunksProperListFirstSolution = np.array(firstSolutionList).reshape(nColumns, nRows)
+    chunksProperListSecondSolution = np.array(secondSolutionList).reshape(nColumns, nRows)
+    chunksPuzzleList = np.array(puzzleArray).reshape(nColumns, nRows)
+    firstTotalCost = 0
+    secondTotalCost = 0
 
-    chunksPuzzleList = [puzzleArray[x:x+nColumns] for x in range(0, len(puzzleArray), nColumns)]
-    totalCost = 0
-
-    for i in range(len(chunksPuzzleList)):
-        for j in range(len(chunksPuzzleList[i])):
-            properLocationXFirstSolution, porperLocationYFirstSolution = properLocationOfNode(chunksPuzzleList[i][j], chunksProperListFirstSolution)
-            properLocationXSecondSolution, porperLocationYSecondSolution = properLocationOfNode(chunksPuzzleList[i][j], chunksProperListSecondSolution)
-
-            totalCost = totalCost + min(calculateCost(properLocationXFirstSolution, porperLocationYFirstSolution, i, j, nRows, nColumns),  calculateCost(properLocationXSecondSolution, porperLocationYSecondSolution, i, j, nRows, nColumns))
-    return totalCost
+    for row in range(len(chunksPuzzleList)):
+        print("row=======================", chunksPuzzleList[row])
+        for column in range(len(chunksPuzzleList[row])):
+            print("column=======================", chunksPuzzleList[row][column])
+            properLocationXFirstSolution, porperLocationYFirstSolution = properLocationOfNode(chunksPuzzleList[row][column], chunksProperListFirstSolution)
+            properLocationXSecondSolution, porperLocationYSecondSolution = properLocationOfNode(chunksPuzzleList[row][column], chunksProperListSecondSolution)
+            firstTotalCost = firstTotalCost + calculateCost(properLocationXFirstSolution, porperLocationYFirstSolution, row, column, nRows, nColumns)
+            secondTotalCost = secondTotalCost + calculateCost(properLocationXSecondSolution, porperLocationYSecondSolution, row, column, nRows, nColumns)
+    print("===================================", min(firstTotalCost, secondTotalCost))
+    return min(firstTotalCost, secondTotalCost)
 
 def properLocationOfNode(node, list):
     for i in range(len(list)):
@@ -40,18 +43,30 @@ def properLocationOfNode(node, list):
                 return i, j
 
 def calculateCost(properX, properY, realX, realY, nRows, nColumns):
-    if realX == properX and ((realX == 0 and properX == nColumns-1) or (realX == nColumns-1 and properX == 0)):
+    print("properX  ================", properX)
+    print("properY =================", properY)
+
+    # Vertical and horizontal wrapping
+    if realX == properX and ((realY == 0 and properY == nColumns-1) or (realY == nColumns-1 and properY == 0)):
         return 1
-    if nRows > 1 and realY == properY and ((realY == 0 and properY == nRows-1)) or (realY == nRows-1 and properY == 0):
+    if realY == properY and ((realX == 0 and properX == nRows-1)) or (realX == nRows-1 and properX == 0):
         return 1
+    
+
+    # Diagonal
+    if abs(realX - properX) == 1 and abs(realY - properY) == 1:
+        return 1
+
+    # opposite Diagnoals move
     if (realX == 0 and realY == 0) and (properX == nRows-1 and properY ==  nColumns-1):
         return 1
-    if (properX == 0 and properY == 0) and (realX == nRows-1 and realY ==  nColumns-1):
+    if (realX == nRows-1 and realY ==  nColumns-1) and (properX == 0 and properY == 0):
         return 1
     if (realX == 0 and realY == nColumns-1) and (properX == nRows-1 and properY == 0):
         return 1
     if (realX == nRows-1 and realY == 0) and (properX == 0 and properY == nColumns-1):
         return 1
+
     return abs(properX-realX) + abs(properY - realY)
 
 #sumOfPermutationInversions
