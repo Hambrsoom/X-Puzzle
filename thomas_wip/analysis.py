@@ -55,15 +55,81 @@ def writeInfoOnFile(file, totalNumberLine, averageNumberLine, calcutedNumber):
     file.write(averageNumberLine + str(calcutedNumber/50))
     file.write("\n\n")
 
+def generateTheListOfLowestCost():
+    dic = {
+        0: 16,
+        1: 11,
+        2: 12,
+        3: 14,
+        4: "no solution",
+        5: 12,
+        6: 13,
+        7: 15,
+        8: 12,
+        9: 14,
+        10: 12,
+        11: 14,
+        12: 12,
+        13: "no solution",
+        14: 17,
+        15: 15,
+        16: 12,
+        17: 12,
+        18: 10,
+        19: 15,
+        20: 13,
+        21: 13,
+        22: "no solution",
+        23: 14,
+        24: 17,
+        25: 17,
+        26: "no solution",
+        27: 14,
+        28: 13,
+        29: 15,
+        30: 12,
+        31: 16,
+        32: 12,
+        33: 15,
+        34: 11,
+        35: 12,
+        36: 17,
+        37: 17,
+        38: 12,
+        39: 16,
+        40: "no solution",
+        41: 15,
+        42: 16,
+        43: 14,
+        44: 12,
+        45: 17,
+        46: 13,
+        47: 14,
+        48: 16,
+        49: 13,
+    }
+    return dic
+
+dictOfLowestCostForPuzzles = generateTheListOfLowestCost()
+dictOfAlgoOptimalitySolutionPath = {
+    "gbfs-h1": 0,
+    "gbfs-h2": 0,
+    "astar-h1": 0,
+    "astar-h2": 0,
+    "ucs": 0
+}
+dictOfAlgoFindingTheLowestCostPath = {}
+
+def checkIfCostOfAlgoIsLowestCostPath(cost, puzzleNumber, dictOfLowestCostForPuzzles):
+    lowestCost = dictOfLowestCostForPuzzles[puzzleNumber]
+    return lowestCost == cost
 
 for filename in os.listdir("output"):
     # GBFS:
     if "gbfs-h1_search" in filename:
         gbfsh1Search = gbfsh1Search + getLineCount(filename)
-    # elif fnmatch.fnmatch(filename, 'gbfs-h2') and fnmatch.fnmatch(filename, 'search'):
     elif "gbfs-h2_search" in filename:
         gbfsh2Search = gbfsh2Search + getLineCount(filename)
-    # elif fnmatch.fnmatch(filename, 'gbfs-h1') and fnmatch.fnmatch(filename, 'solution'):
     elif "gbfs-h1_solution" in filename:
         if(getFirstLine(filename) == "no solution"):
             gbfsh1NoSolution = gbfsh1NoSolution + 1
@@ -72,7 +138,10 @@ for filename in os.listdir("output"):
             lastLine = getLastLine(filename).split()
             gbfsh1Cost = gbfsh1Cost + int(lastLine[0])
             gbfsh1Time = gbfsh1Time + float(lastLine[1])
-    # elif fnmatch.fnmatch(filename, 'gbfs-h2') and fnmatch.fnmatch(filename, 'solution'):
+            puzzleNumber = int(filename.split("_"))
+            if checkIfCostOfAlgoIsLowestCostPath(int(lastLine[0]), puzzleNumber, dictOfLowestCostForPuzzles)
+
+
     elif "gbfs-h2_solution" in filename:
         if(getFirstLine(filename) == "no solution"):
             gbfsh2NoSolution = gbfsh2NoSolution + 1
@@ -170,5 +239,8 @@ writeInfoOnFile(file, "Total execution time of gbfs-h1: ", "Average execution ti
 writeInfoOnFile(file, "Total execution time of with gbfs-h2: ", "Average execution time of gbfs-h2: ", gbfsh2Time)
 writeInfoOnFile(file, "Total execution time of astar-h1: ", "Average execution time of astar-h1: ", aStarh1Time)
 writeInfoOnFile(file, "Total execution time of astar-h2: ", "Average execution time of astar-h2: ", aStarh2Time)
+
+# 4. optimality of the solution path
+
 
 file.close()

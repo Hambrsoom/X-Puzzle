@@ -16,6 +16,8 @@ def uniform_cost(puzzleNumber, puzzleArr, numRows, numColumns):
     start_time = time.time()
     time_end = start_time + 60
 
+    print("Running Uniform Cost algo on the following puzzle:")
+
     puzzleDimensions["numRows"] = numRows
     puzzleDimensions["numColumns"] = numColumns
 
@@ -56,9 +58,11 @@ def uniform_cost(puzzleNumber, puzzleArr, numRows, numColumns):
     
     # The type of the solutiona and search files to generate if they pass 60 seconds or not
     if time.time() <= time_end:
+        print("< exec time")
         getSearchPath(closed, "ucs", puzzleNumber, True, "")
         getSolutionPath(goalNode, closed, "ucs", puzzleNumber, True, "", execution_time)
     else: 
+        print("no solution")
         getSearchPath(closed, "ucs", puzzleNumber, False, "")
         getSolutionPath(goalNode, closed, "ucs", puzzleNumber, False, "", execution_time)
 
