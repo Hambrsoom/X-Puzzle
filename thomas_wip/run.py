@@ -34,4 +34,4 @@ if args.algo == 'astar':
 if args.algo == 'ucs':
     uniform_cost(puzzleNumber, puzzles[0], 2, 4)
 if args.algo == 'all':
-    generateSolutionAndSearchFiles(puzzles, 4, 4)
+    generateSolutionAndSearchFiles(puzzles, 2, 4)
