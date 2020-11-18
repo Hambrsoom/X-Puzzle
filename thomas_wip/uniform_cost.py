@@ -24,7 +24,7 @@ puzzleDimensions = {
 def uniform_cost(puzzleNumber, puzzleArr, numRows, numColumns):
 
     start_time = time.time()
-    time_end = start_time + 60
+    time_end = start_time + 600
 
     print("Running Uniform Cost algo on the following puzzle:")
 
@@ -46,7 +46,6 @@ def uniform_cost(puzzleNumber, puzzleArr, numRows, numColumns):
     
     while not goalFound and time.time() <= time_end:
         nodeWeAreLookingAt = open.pop(0)
-        print(nodeWeAreLookingAt['currentState'])        
         closed.insert(0, nodeWeAreLookingAt)
         goalFound = isGoal(nodeWeAreLookingAt['currentState'], puzzleDimensions)
         if goalFound: goalNode = nodeWeAreLookingAt

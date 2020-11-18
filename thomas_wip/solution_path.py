@@ -2,18 +2,12 @@ from pprint import pprint
 from helper_methods import listToString
 
 def getSolutionPath(goalNode, closedArr, algoType, puzzleNumber, foundSolution, heuristicFunction, executionTime):
-    print("========================")
-    print("Solution Path")
-    print("========================")
-
     if heuristicFunction == "":
         fileName = "output/" + str(puzzleNumber) + "_" + algoType + "_solution" +".txt"
     else:
         fileName = "output/" + str(puzzleNumber) + "_" + algoType + "-" + heuristicFunction + "_solution" +".txt"
 
     file = open(fileName, "w")
-
-    print(foundSolution)
 
     if foundSolution:
         solutionPath = []

@@ -26,14 +26,11 @@ def manhattan(puzzleArray, nRows, nColumns, firstSolutionList, secondSolutionLis
     secondTotalCost = 0
 
     for row in range(len(chunksPuzzleList)):
-        print("row=======================", chunksPuzzleList[row])
         for column in range(len(chunksPuzzleList[row])):
-            print("column=======================", chunksPuzzleList[row][column])
             properLocationXFirstSolution, porperLocationYFirstSolution = properLocationOfNode(chunksPuzzleList[row][column], chunksProperListFirstSolution)
             properLocationXSecondSolution, porperLocationYSecondSolution = properLocationOfNode(chunksPuzzleList[row][column], chunksProperListSecondSolution)
             firstTotalCost = firstTotalCost + calculateCost(properLocationXFirstSolution, porperLocationYFirstSolution, row, column, nRows, nColumns)
             secondTotalCost = secondTotalCost + calculateCost(properLocationXSecondSolution, porperLocationYSecondSolution, row, column, nRows, nColumns)
-    print("===================================", min(firstTotalCost, secondTotalCost))
     return min(firstTotalCost, secondTotalCost)
 
 def properLocationOfNode(node, list):
@@ -43,30 +40,29 @@ def properLocationOfNode(node, list):
                 return i, j
 
 def calculateCost(properX, properY, realX, realY, nRows, nColumns):
-    print("properX  ================", properX)
-    print("properY =================", properY)
 
     # Vertical and horizontal wrapping
-    if realX == properX and ((realY == 0 and properY == nColumns-1) or (realY == nColumns-1 and properY == 0)):
-        return 1
-    if realY == properY and ((realX == 0 and properX == nRows-1)) or (realX == nRows-1 and properX == 0):
-        return 1
+    # if realX == properX and ((realY == 0 and properY == nColumns-1) or (realY == nColumns-1 and properY == 0)):
+    #     return 1
+    # if realY == properY and ((realX == 0 and properX == nRows-1)) or (realX == nRows-1 and properX == 0):
+    #     return 1
     
 
-    # Diagonal
-    if abs(realX - properX) == 1 and abs(realY - properY) == 1:
-        return 1
+    # # Diagonal
+    # if abs(realX - properX) == 1 and abs(realY - properY) == 1:
+    #     return 1
 
-    # opposite Diagnoals move
-    if (realX == 0 and realY == 0) and (properX == nRows-1 and properY ==  nColumns-1):
+    # # opposite Diagnoals move
+    # if (realX == 0 and realY == 0) and (properX == nRows-1 and properY ==  nColumns-1):
+    #     return 1
+    # if (realX == nRows-1 and realY ==  nColumns-1) and (properX == 0 and properY == 0):
+    #     return 1
+    # if (realX == 0 and realY == nColumns-1) and (properX == nRows-1 and properY == 0):
+    #     return 1
+    # if (realX == nRows-1 and realY == 0) and (properX == 0 and properY == nColumns-1):
+    #     return 1
+    if (realX == 0 and realY == 0) or (realX == 0 and realY == nRows-1) or (realX == nColumns-1 and realY == nRows-1) or (realX == nColumns-1 and realY == 0):
         return 1
-    if (realX == nRows-1 and realY ==  nColumns-1) and (properX == 0 and properY == 0):
-        return 1
-    if (realX == 0 and realY == nColumns-1) and (properX == nRows-1 and properY == 0):
-        return 1
-    if (realX == nRows-1 and realY == 0) and (properX == 0 and properY == nColumns-1):
-        return 1
-
     return abs(properX-realX) + abs(properY - realY)
 
 #sumOfPermutationInversions

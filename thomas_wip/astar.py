@@ -6,13 +6,6 @@ from search_path import getSearchPath
 from helper_methods import *
 import time
 
-# sampleStateSpace = {
-#     "currentState": [1,2,3,4,5,6,7,0],
-#     "parent": [1,2,3,5,4,6,7,0],
-#     "gn": 2,
-#     "hn": 4
-# }
-
 #file variable
 puzzleDimensions = {
     "numRows": 0,
@@ -48,7 +41,6 @@ def astar(puzzleNumber, puzzleArr, numRows, numColumns, heuristicType):
 
     while not goalFound and time.time() <= time_end:
         nodeWeAreLookingAt = open.pop(0)
-        print(nodeWeAreLookingAt['currentState'])
         closed.insert(0, nodeWeAreLookingAt)
 
         goalFound = isGoal(nodeWeAreLookingAt['currentState'], puzzleDimensions)
