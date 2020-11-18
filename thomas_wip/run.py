@@ -30,7 +30,7 @@ puzzleNumber = 0
 if args.algo == 'gbfs':
     gbfs(puzzleNumber, puzzles[puzzleNumber], 2, 4)
 if args.algo == 'astar':
-    astar(puzzleNumber, puzzles[0], 2, 4, "h2")
+    astar(puzzleNumber, puzzles[puzzleNumber], 2, 4, "h2")
 if args.algo == 'ucs':
     uniform_cost(puzzleNumber, puzzles[0], 2, 4)
 if args.algo == 'all':
