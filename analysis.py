@@ -121,6 +121,7 @@ dictOfAlgoOptimalitySolutionPath = {
 dictOfAlgoFindingTheLowestCostPath = {}
 
 def checkIfCostOfAlgoIsLowestCostPath(cost, puzzleNumber, dictOfLowestCostForPuzzles):
+    print(puzzleNumber)
     lowestCost = dictOfLowestCostForPuzzles[puzzleNumber]
     if lowestCost != "no solution":
         return lowestCost == cost

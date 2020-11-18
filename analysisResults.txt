@@ -131,7 +131,7 @@ Puzzle 8: astar-h1 -- astar-h2 -- ucs
 Puzzle 9: astar-h1
 
 
-Summary of how many each alogrithm got the shortest path 
+Summary of how many each alogrithm got the lowest cost 
 
 gbfs-h1: 3
 gbfs-h2: 0

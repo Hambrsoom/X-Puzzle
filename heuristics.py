@@ -22,13 +22,13 @@ def hammingDistance(puzzleArray, xDim, yDim, firstSolutionList, secondSolutionLi
     return min(hn1, hn2) 
 
 def isDecreasing(puzzleArray, nRows, nColumns, firstSolutionList, secondSolutionList):
-    arrCopy = puzzleArray.copy();
+    arrCopy = puzzleArray.copy()
     
     # convert to int
     for idx, val in enumerate(arrCopy): arrCopy[idx] = int(arrCopy[idx])
 
-    indexOf0 = arrCopy.index(0);
-    arrCopy[indexOf0] = len(arrCopy);
+    indexOf0 = arrCopy.index(0)
+    arrCopy[indexOf0] = len(arrCopy)
 
     # Reshaping the solutions the puzzle to be like a 2d array.
     chunksPuzzleList = np.array(arrCopy).reshape(nColumns, nRows)
